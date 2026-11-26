@@ -29,7 +29,7 @@
     <?php if (can('games.delete')): ?><button class="btn btn-xs btn-danger" name="action" value="delete" type="submit" data-confirm-click="حذف الألعاب المحددة وكل ملفاتها نهائياً؟"><?= icon('trash') ?>حذف</button><?php endif; ?>
   </div>
   <div class="glass table-wrap">
-    <table class="table">
+    <table class="table cards-sm">
       <thead><tr><th><input type="checkbox" data-check-all aria-label="تحديد الكل"></th><th>اللعبة</th><th>الجهاز</th><th>الحالة</th><th>الملفات</th><th>التقييم</th><th>التنزيلات</th><th>آخر تعديل</th><th></th></tr></thead>
       <tbody>
       <?php foreach ($result['items'] as $g): ?>

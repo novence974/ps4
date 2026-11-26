@@ -774,7 +774,7 @@ body:has(.gen-hero[data-gen="ps3"]) .btn-primary, body:has(.gen-hero[data-gen="p
    type the browser reports, so every phone, tablet and desktop gets a fit.
    ===================================================================== */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-body { overflow-x: hidden; }
+html, body { overflow-x: clip; }
 img, video { max-width: 100%; }
 
 /* notches, rounded corners and home indicators (iPhone, Android gesture bars) */
@@ -825,6 +825,9 @@ img, video { max-width: 100%; }
   .tabbar a { flex-direction: row; gap: 6px; }
   .page-hero { padding-top: calc(var(--topbar) + 12px); }
   .game-cover { width: 120px; }
+  .stage { min-height: auto; align-items: flex-start; }
+  .stage .wrap { padding-block: 14px 18px; }
+  .stage-cover { display: none; }
 }
 /* tablets and unfolded foldables in portrait */
 @media (min-width: 721px) and (max-width: 1024px) and (orientation: portrait) {
@@ -839,3 +842,5 @@ img, video { max-width: 100%; }
 .tg-contact { gap: 8px; border-color: rgba(42, 171, 238, .45); background: rgba(42, 171, 238, .14); color: #e8f6ff; }
 .tg-contact:hover, .tg-contact:focus-visible { background: rgba(42, 171, 238, .26); border-color: rgba(42, 171, 238, .8); color: #fff; }
 .tg-contact svg { color: #2aabee; }
+/* grid items may shrink below their content width (wide tables then scroll inside their own wrapper) */
+.dash > *, .grid > *, .grid-2 > *, .grid-3 > *, .form-grid > *, .media-grid > *, .game-layout > *, .browse > *, .slabs > *, .stats-row > * { min-width: 0; }
