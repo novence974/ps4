@@ -24,6 +24,7 @@ $navItems = [['/', 'home', 'الرئيسية'], ['/platforms', 'gamepad', 'ال�
 <title><?= e($pageTitle) ?></title>
 <meta name="description" content="<?= e($metaDescription ?? setting('site.tagline')) ?>">
 <meta name="theme-color" content="#070a1c">
+<?php if (setting('site.owner')): ?><meta name="author" content="<?= e(setting('site.owner')) ?>"><meta name="copyright" content="© <?= gmdate('Y') ?> <?= e(setting('site.owner')) ?>"><?php endif; ?>
 <script nonce="<?= e(nonce()) ?>">
 /* tag the device so CSS can fine-tune (layout itself follows screen size & input type) */
 (function (d, n) {
@@ -121,7 +122,10 @@ $navItems = [['/', 'home', 'الرئيسية'], ['/platforms', 'gamepad', 'ال�
   <div class="wrap">
     <div>
       <a class="brand" href="<?= e(url('/')) ?>"><img src="<?= e(asset('img/brand/logo.svg')) ?>" alt="" width="30" height="30"><b><span>ULTIMATE</span> PS LIBRARY</b></a>
-      <p>PlayStation وأسماء الأجهزة علامات تجارية لشركة Sony Interactive Entertainment. هذه المكتبة مشروع مستقل غير تابع لها، وتعرض البيانات والملفات والروابط المصرح بها فقط.</p>
+      <?php if (setting('site.owner')): ?><p class="copyright">© <?= gmdate('Y') ?> <b dir="ltr"><?= e(setting('site.owner')) ?></b> — جميع الحقوق محفوظة</p><?php endif; ?>
+      <?php if ($tg = telegram_url()): ?>
+        <a class="btn btn-sm tg-contact" href="<?= e($tg) ?>" target="_blank" rel="noopener"><?= icon('send') ?>تواصل معي على تلغرام <span dir="ltr">@<?= e(substr($tg, 13)) ?></span></a>
+      <?php endif; ?>
     </div>
     <nav aria-label="روابط التذييل">
       <a href="<?= e(url('/platforms')) ?>">الأجهزة</a>

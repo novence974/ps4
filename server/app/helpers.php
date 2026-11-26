@@ -223,7 +223,7 @@ function compat_names(): array
 
 function link_type_names(): array
 {
-    return ['official_store' => 'المتجر الرسمي', 'publisher' => 'موقع الناشر', 'authorized_mirror' => 'مصدر مصرح به', 'info' => 'معلومات'];
+    return ['official_store' => 'المتجر', 'publisher' => 'موقع الناشر', 'authorized_mirror' => 'رابط تنزيل', 'info' => 'معلومات'];
 }
 
 function update_type_names(): array
@@ -261,6 +261,16 @@ function avatar_url(?array $u, string $ext = 'webp'): string
 function user_label(?array $u): string
 {
     return $u ? (string) ($u['display_name'] ?: $u['username']) : 'زائر';
+}
+
+/** Telegram link for the owner's username (setting site.telegram, with or without @); null when unset or invalid. */
+function telegram_url(): ?string
+{
+    $u = ltrim(trim((string) setting('site.telegram')), '@');
+    if (str_starts_with($u, 'https://t.me/')) {
+        $u = substr($u, 13);
+    }
+    return preg_match('/^[A-Za-z0-9_]{4,32}$/', $u) ? 'https://t.me/' . $u : null;
 }
 
 function cover_url(?array $g, string $size = 'md', string $ext = 'webp'): string

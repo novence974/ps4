@@ -14,7 +14,7 @@
       <label class="field full"><span>الوصف</span><textarea name="description" rows="3" maxlength="5000"><?= e($f('description')) ?></textarea></label>
       <label class="field full"><span>الصيغ المدعومة</span><input type="text" name="supported_formats" value="<?= e($f('supported_formats')) ?>" maxlength="255"></label>
       <label class="field full"><span>معلومات التوافق</span><textarea name="compatibility_notes" rows="3" maxlength="5000"><?= e($f('compatibility_notes')) ?></textarea></label>
-      <label class="field full"><span>طرق التثبيت المسموح بها</span><textarea name="install_notes" rows="3" maxlength="5000"><?= e($f('install_notes')) ?></textarea><small class="hint">اذكر الطرق الرسمية فقط (المتجر، القرص، الإصدارات الرسمية)</small></label>
+      <label class="field full"><span>ملاحظات التثبيت</span><textarea name="install_notes" rows="3" maxlength="5000"><?= e($f('install_notes')) ?></textarea><small class="hint">اختياري؛ لا تظهر للزوار.</small></label>
       <div class="full"><input type="hidden" name="is_active" value="0"><label class="switch"><span>ظاهر في الموقع والتطبيقات</span><input type="checkbox" name="is_active" value="1" <?= $f('is_active', 1) ? 'checked' : '' ?>></label></div>
     </div>
     <div class="form-actions"><button class="btn btn-primary" type="submit"><?= icon('save') ?>حفظ</button><a class="btn btn-ghost" href="<?= e(url('/admin/platforms')) ?>">رجوع</a></div>
@@ -23,7 +23,7 @@
   <div>
     <section class="glass card"><h2><?= icon('image') ?>شعار الجهاز</h2>
       <div class="slab" style="--pc: <?= e($p['accent_color']) ?>; min-height:auto; aspect-ratio:1; width:150px; justify-content:center; align-items:center; margin-bottom:12px"><?php if ($p['logo_path']): ?><img src="<?= e(platform_logo($p)) ?>" alt="" style="width:80%"><?php else: ?><span class="glyph"><?= e($p['short_name']) ?></span><?php endif; ?></div>
-      <form method="post" action="<?= e(url('/admin/platforms/' . $pid . '/image/logo')) ?>" enctype="multipart/form-data"><?= csrf_field() ?><input type="file" name="file" accept="image/png,image/webp,image/jpeg" required><p class="muted" style="font-size:var(--fs-xs)">PNG شفاف 512×512. لا تستخدم شعارات رسمية إلا إن كنت تملك حق استخدامها.</p><button class="btn btn-sm btn-primary" type="submit"><?= icon('upload') ?>رفع الشعار</button></form>
+      <form method="post" action="<?= e(url('/admin/platforms/' . $pid . '/image/logo')) ?>" enctype="multipart/form-data"><?= csrf_field() ?><input type="file" name="file" accept="image/png,image/webp,image/jpeg" required><p class="muted" style="font-size:var(--fs-xs)">PNG شفاف 512×512.</p><button class="btn btn-sm btn-primary" type="submit"><?= icon('upload') ?>رفع الشعار</button></form>
     </section>
     <section class="glass card"><h2><?= icon('image') ?>صورة الجهاز</h2>
       <div class="media-preview wide" style="margin-bottom:12px"><?php if ($p['image_path']): ?><img src="<?= e(media_url($p['image_path'], 'sm')) ?>" alt=""><?php endif; ?></div>

@@ -42,7 +42,12 @@ final class ActivityLog
     {
         try {
             $path = mb_substr((string) $req->path(), 0, 180);
-            if (\App\Core\Cache::store()->increment('seclog:' . $status . ':' . $req->ip() . ':' . md5($path), 600) > 1) {
+            $cache = \App\Core\Cache::store();
+            if ($cache->increment('seclog:' . $status . ':' . $req->ip() . ':' . md5($path), 600) > 1) {
+                return;
+            }
+            // keep the log from filling the (small) database: at most 30 entries per address per hour, 500 in total
+            if ($cache->increment('seclog-ip:' . $req->ip(), 3600) > 30 || $cache->increment('seclog-all', 3600) > 500) {
                 return;
             }
             $action = [403 => 'security.forbidden', 419 => 'security.csrf', 429 => 'security.throttled'][$status];

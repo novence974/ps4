@@ -17,7 +17,7 @@ final class AdminSettings
     {
         return [
             'general' => ['perm' => 'settings.manage', 'schema' => [
-                'site.name' => ['string', 80], 'site.tagline' => ['string', 160], 'site.default_theme' => ['enum', ['dark', 'light', 'auto']],
+                'site.name' => ['string', 80], 'site.tagline' => ['string', 160], 'site.owner' => ['string', 80], 'site.telegram' => ['string', 64], 'site.default_theme' => ['enum', ['dark', 'light', 'auto']],
                 'site.cdn_url' => ['url'], 'site.per_page' => ['int', [6, 100]], 'site.maintenance' => ['bool'], 'site.maintenance_message' => ['string', 300],
                 'updates.auto_on_publish' => ['bool'], 'music.enabled' => ['bool'], 'music.default_volume' => ['int', [0, 100]], 'sfx.enabled' => ['bool'],
                 'mail.driver' => ['enum', ['log', 'smtp', 'mail']], 'mail.host' => ['string', 190], 'mail.port' => ['int', [1, 65535]],

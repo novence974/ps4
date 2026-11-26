@@ -22,10 +22,9 @@
 </section>
 
 <div class="wrap">
-  <div class="grid-3" style="margin-top:10px">
+  <div class="grid-2" style="margin-top:10px">
     <div class="glass panel"><h3><?= icon('disc') ?> الصيغ المدعومة</h3><p class="muted" style="margin:0"><?= e($p['supported_formats'] ?: '—') ?></p></div>
     <div class="glass panel"><h3><?= icon('compare') ?> التوافق</h3><p class="muted" style="margin:0"><?= e($p['compatibility_notes'] ?: '—') ?></p></div>
-    <div class="glass panel"><h3><?= icon('shield') ?> طرق التثبيت المسموح بها</h3><p class="muted" style="margin:0"><?= e($p['install_notes'] ?: '—') ?></p></div>
   </div>
 
   <div class="browse">

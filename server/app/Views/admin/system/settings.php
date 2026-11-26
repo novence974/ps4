@@ -6,6 +6,8 @@
       <div class="form-grid">
         <label class="field"><span>اسم المكتبة</span><input type="text" name="site_name" value="<?= e(setting('site.name')) ?>" maxlength="80"></label>
         <label class="field"><span>الوصف المختصر</span><input type="text" name="site_tagline" value="<?= e(setting('site.tagline')) ?>" maxlength="160"></label>
+        <label class="field"><span>صاحب الحقوق (يظهر في التذييل)</span><input type="text" name="site_owner" value="<?= e(setting('site.owner')) ?>" maxlength="80"></label>
+        <label class="field"><span>معرّف تلغرام للتواصل</span><input type="text" name="site_telegram" value="<?= e(setting('site.telegram')) ?>" maxlength="64" dir="ltr" placeholder="Novence"></label>
         <label class="field"><span>المظهر الافتراضي</span><select name="site_default_theme"><?php foreach (['dark' => 'داكن', 'light' => 'فاتح', 'auto' => 'حسب الجهاز'] as $k => $l): ?><option value="<?= $k ?>" <?= setting('site.default_theme') === $k ? 'selected' : '' ?>><?= $l ?></option><?php endforeach; ?></select></label>
         <label class="field"><span>عدد الألعاب في الصفحة</span><input type="number" name="site_per_page" value="<?= (int) setting('site.per_page', 24) ?>" min="6" max="100"></label>
         <label class="field full"><span>رابط CDN (اختياري)</span><input type="text" name="site_cdn_url" value="<?= e(setting('site.cdn_url')) ?>" dir="ltr" placeholder="https://cdn.example.com"><small class="hint">يُقدَّم منه مجلدا assets و media. اتركه فارغاً لاستخدام الخادم نفسه.</small></label>
@@ -34,7 +36,7 @@
       <input type="hidden" name="sfx_enabled" value="0"><label class="switch"><span>مؤثرات الأزرار والتنقل</span><input type="checkbox" name="sfx_enabled" value="1" <?= setting('sfx.enabled', true) ? 'checked' : '' ?>></label>
       <label class="field"><span>مستوى الصوت الافتراضي: <b data-vol-label><?= (int) setting('music.default_volume', 35) ?></b>%</span><input type="range" name="music_default_volume" min="0" max="100" value="<?= (int) setting('music.default_volume', 35) ?>" data-vol-input style="width:100%; accent-color:var(--aqua)"></label>
       <p class="muted" style="font-size:var(--fs-xs)">الموسيقى لا تبدأ أبداً قبل تفاعل الزائر، ويُحفظ اختياره على جهازه وفي حسابه.</p>
-      <div class="notice" style="margin-top:6px"><?= icon('music') ?><span style="flex:1">المقطوعة الحالية: <?= setting('music.track') ? '<span class="code-inline">' . e(setting('music.track')) . '</span>' : 'Night Shelf (أصلية ومرخصة مع المشروع)' ?></span></div>
+      <div class="notice" style="margin-top:6px"><?= icon('music') ?><span style="flex:1">المقطوعة الحالية: <?= setting('music.track') ? '<span class="code-inline">' . e(setting('music.track')) . '</span>' : 'Night Shelf (المقطوعة الافتراضية)' ?></span></div>
     </section>
   </div>
 </div>
@@ -44,7 +46,7 @@
   <section class="glass card"><h2><?= icon('upload') ?>استبدال موسيقى الخلفية</h2>
     <form method="post" action="<?= e(url('/admin/settings/music')) ?>" enctype="multipart/form-data"><?= csrf_field() ?>
       <input type="file" name="file" accept=".mp3,.ogg,audio/mpeg,audio/ogg" required>
-      <p class="muted" style="font-size:var(--fs-xs)">استخدم موسيقى أصلية أو مرخصة لك فقط (MP3 أو OGG).</p>
+      <p class="muted" style="font-size:var(--fs-xs)">ملف MP3 أو OGG.</p>
       <div class="row"><button class="btn btn-sm btn-primary" type="submit"><?= icon('upload') ?>رفع</button></div></form>
     <?php if (setting('music.track')): ?><form method="post" action="<?= e(url('/admin/settings/music/remove')) ?>" style="margin-top:8px"><?= csrf_field() ?><button class="btn btn-xs btn-ghost" type="submit"><?= icon('undo') ?>العودة للموسيقى الافتراضية</button></form><?php endif; ?>
   </section>

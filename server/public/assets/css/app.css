@@ -832,3 +832,10 @@ img, video { max-width: 100%; }
 }
 /* iOS Safari: dynamic toolbar safe min-height */
 @supports (height: 100dvh) { .stage { max-height: 100dvh; } }
+
+/* footer credit and Telegram contact */
+.footer .copyright { margin: 10px 0 12px; color: var(--mist); font-size: var(--fs-sm); }
+.footer .copyright b { color: var(--ink); font-weight: 600; }
+.tg-contact { gap: 8px; border-color: rgba(42, 171, 238, .45); background: rgba(42, 171, 238, .14); color: #e8f6ff; }
+.tg-contact:hover, .tg-contact:focus-visible { background: rgba(42, 171, 238, .26); border-color: rgba(42, 171, 238, .8); color: #fff; }
+.tg-contact svg { color: #2aabee; }

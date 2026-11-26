@@ -14,6 +14,8 @@ final class Settings
     public const DEFAULTS = [
         'site.name' => 'ULTIMATE PS LIBRARY',
         'site.tagline' => 'مكتبة ألعاب PlayStation المتكاملة',
+        'site.owner' => 'Novence',
+        'site.telegram' => 'Novence',
         'site.default_theme' => 'dark',
         'site.cdn_url' => '',
         'site.maintenance' => false,

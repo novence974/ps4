@@ -131,7 +131,7 @@ $compatTag = ['perfect' => 'tag-ok', 'playable' => 'tag-ok', 'ingame' => 'tag-wa
           </div>
         <?php endforeach; ?>
         <?php if ($g['links']): ?>
-          <div class="file-group-title"><?= icon('link') ?>روابط رسمية ومصادر مصرح بها</div>
+          <div class="file-group-title"><?= icon('link') ?>روابط التنزيل</div>
           <div class="files">
             <?php foreach ($g['links'] as $l): ?>
               <div class="file-row">

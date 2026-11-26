@@ -2,7 +2,7 @@
   <div class="auth-card glass sheen">
     <img class="mark" src="<?= e(asset('img/brand/logo.svg')) ?>" alt="" width="56" height="56">
     <h1>إنشاء حساب</h1>
-    <p class="sub">احفظ ألعابك المفضلة وتابع تحديثاتها ونزّل الملفات المصرح بها.</p>
+    <p class="sub">احفظ ألعابك المفضلة وتابع تحديثاتها ونزّل الملفات.</p>
     <form method="post" action="<?= e(url('/register')) ?>" novalidate data-register>
       <?= csrf_field() ?>
       <label class="field<?= field_error('username') ? ' has-error' : '' ?>"><span>اسم المستخدم</span>

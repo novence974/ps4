@@ -1,6 +1,6 @@
 <div class="wrap">
   <h1 class="page-title">أجهزة PlayStation</h1>
-  <p class="page-sub">خمسة أجيال في مكان واحد. لكل جهاز صفحة بمكتبته ومعلومات الصيغ المدعومة والتوافق وطرق التثبيت الرسمية.</p>
+  <p class="page-sub">خمسة أجيال في مكان واحد. لكل جهاز صفحة بمكتبته ومعلومات الصيغ المدعومة والتوافق.</p>
   <div class="grid">
     <?php foreach ($platforms as $p): ?>
       <a class="glass panel sheen plat-row" data-gen="<?= e($p['slug']) ?>" href="<?= e(url('platform/' . $p['slug'])) ?>" style="--pc: <?= e($p['accent_color']) ?>; display:grid; grid-template-columns:auto 1fr auto; gap:22px; align-items:center">

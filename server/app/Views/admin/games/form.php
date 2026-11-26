@@ -260,10 +260,9 @@ $base = $isEdit ? url('/admin/games/' . $gid) : '';
 <!-- ================================================================ links -->
 <section class="tab-panel" data-panel="links" <?= $tab !== 'links' ? 'hidden' : '' ?>>
   <div class="glass card">
-    <h2><?= icon('link') ?>إضافة رابط رسمي أو مصرح به</h2>
-    <div class="notice" style="margin-bottom:12px"><?= icon('shield') ?><span>أضف فقط روابط المتاجر الرسمية أو مواقع الناشرين أو المصادر التي تملك تصريحاً بتوزيعها.</span></div>
+    <h2><?= icon('link') ?>إضافة رابط</h2>
     <form method="post" action="<?= e($base . '/links') ?>" class="inline-form"><?= csrf_field() ?>
-      <label class="field"><span>العنوان *</span><input type="text" name="title" required maxlength="190" placeholder="صفحة المتجر الرسمي"></label>
+      <label class="field"><span>العنوان *</span><input type="text" name="title" required maxlength="190" placeholder="مثال: PKG v1.02"></label>
       <label class="field" style="grid-column: span 2"><span>الرابط *</span><input type="url" name="url" required maxlength="1000" dir="ltr" placeholder="https://"></label>
       <label class="field"><span>النوع</span><select name="link_type"><?php foreach (link_type_names() as $k => $l): ?><option value="<?= $k ?>"><?= e($l) ?></option><?php endforeach; ?></select></label>
       <label class="field"><span>المنطقة</span><select name="region"><option value="">—</option><?php foreach (region_names() as $k => $l): ?><option value="<?= $k ?>"><?= e($l) ?></option><?php endforeach; ?></select></label>
