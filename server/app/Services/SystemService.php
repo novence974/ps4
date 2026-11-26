@@ -79,18 +79,20 @@ final class SystemService
         } catch (\Throwable) {
             $dbOk = false;
         }
+        // visitors only learn whether the server answers; everything else is for signed-in admins
         $out = [
             'status' => $dbOk ? 'ok' : 'degraded',
             'app' => (string) Settings::get('site.name'),
-            'version' => APP_VERSION,
             'api_version' => 'v1',
-            'time' => gmdate(DATE_ATOM),
             'maintenance' => (bool) Settings::get('site.maintenance', false),
-            'registration_open' => (bool) Settings::get('auth.registration_open', true),
-            'database' => ['ok' => $dbOk, 'latency_ms' => round((microtime(true) - $t) * 1000, 2)],
-            'chunk_size' => UploadService::chunkSize(),
+            'database' => ['ok' => $dbOk],
         ];
         if ($detailed) {
+            $out['version'] = APP_VERSION;
+            $out['time'] = gmdate(DATE_ATOM);
+            $out['registration_open'] = (bool) Settings::get('auth.registration_open', true);
+            $out['database']['latency_ms'] = round((microtime(true) - $t) * 1000, 2);
+            $out['chunk_size'] = UploadService::chunkSize();
             $exts = [];
             foreach (['pdo_mysql', 'gd', 'mbstring', 'fileinfo', 'sodium', 'zip', 'zlib', 'curl', 'intl', 'redis', 'apcu', 'exif', 'openssl'] as $e) {
                 $exts[$e] = extension_loaded($e);

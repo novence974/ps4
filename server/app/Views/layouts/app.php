@@ -132,7 +132,6 @@ $navItems = [['/', 'home', 'الرئيسية'], ['/platforms', 'gamepad', 'ال�
       <a href="<?= e(url('/games?sort=rating')) ?>">الأعلى تقييماً</a>
       <a href="<?= e(url('/games?sort=downloads')) ?>">الأكثر تحميلاً</a>
       <a href="<?= e(url('/updates')) ?>">التحديثات</a>
-      <a href="<?= e(url('/api/v1/status')) ?>">حالة الخادم</a>
     </nav>
   </div>
 </footer>

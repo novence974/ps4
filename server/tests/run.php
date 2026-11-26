@@ -156,7 +156,7 @@ function ensure_upload_fixture(Http $http, object $ctx): void
 $S->add('واجهة API العامة', 'GET /status يعرض حالة الخادم وقاعدة البيانات', function () use ($http) {
     $d = expect_ok($http->get('/api/v1/status'));
     check($d['status'] === 'ok' && $d['database']['ok'] === true, 'status ok');
-    check(!isset($d['php']), 'details hidden from guests');
+    check(!isset($d['php']) && !isset($d['version']) && !isset($d['database']['latency_ms']) && !isset($d['chunk_size']), 'details hidden from guests');
 });
 $S->add('واجهة API العامة', 'GET /status يعرض التفاصيل للمدير', function () use ($http, $ctx) {
     $d = expect_ok($http->get('/api/v1/status', ['token' => $ctx->admin]));
@@ -493,7 +493,7 @@ $S->add('إدارة الألعاب', 'إحصاءات لوحة التحكم وس�
 $S->add('الرفع المجزأ والاستكمال', 'رفع ملف على أجزاء مع انقطاع واستكمال وتحقق SHA-256', function () use ($http, $ctx) {
     $g = create_game($http, $ctx, ['title' => 'zz-test Upload ' . $ctx->run]);
     $ctx->upGame = $g['id'];
-    $chunk = expect_ok($http->get('/api/v1/status'))['chunk_size'];
+    $chunk = expect_ok($http->get('/api/v1/status', ['token' => $ctx->admin]))['chunk_size'];
     $size = $chunk * 2 + 777;
     $data = random_bytes($size);
     $sha = hash('sha256', $data);
