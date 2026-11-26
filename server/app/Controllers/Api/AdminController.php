@@ -380,8 +380,18 @@ final class AdminController extends ApiController
         $this->authorize('logs.view');
         return $this->paginated(ActivityLog::list($this->request->query, $this->page(), $this->perPage(50)), static fn ($l) => [
             'id' => (int) $l['id'], 'action' => $l['action'], 'label' => ActivityLog::label($l['action']), 'description' => $l['description'],
-            'user' => $l['username'], 'ip' => $l['ip'], 'entity' => $l['entity_type'] ? ['type' => $l['entity_type'], 'id' => $l['entity_id'] !== null ? (int) $l['entity_id'] : null] : null,
+            'user' => $l['username'], 'user_id' => $l['user_id'] !== null ? (int) $l['user_id'] : null, 'ip' => $l['ip'],
+            'group' => ActivityLog::groupOf($l['action']), 'user_agent' => $l['user_agent'], 'device' => ActivityLog::device($l['user_agent']),
+            'meta' => $l['meta'] ? json_decode((string) $l['meta'], true) : null,
+            'entity' => $l['entity_type'] ? ['type' => $l['entity_type'], 'id' => $l['entity_id'] !== null ? (int) $l['entity_id'] : null] : null,
             'at' => iso_date($l['created_at']),
         ]);
+    }
+
+    /** GET /admin/logs/summary — counts per group for the last 24 hours and 7 days, plus the newest id (for live polling). */
+    public function logsSummary(): Response
+    {
+        $this->authorize('logs.view');
+        return $this->ok(ActivityLog::summary());
     }
 }

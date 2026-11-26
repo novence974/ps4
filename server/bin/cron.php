@@ -27,6 +27,7 @@ if (BackupService::isDue()) {
 }
 if ((int) gmdate('i') === 0) {
     Queue::prune(14);
+    \App\Services\ActivityLog::prune();
     DB::run('DELETE FROM user_tokens WHERE expires_at < ?', [gmdate('Y-m-d H:i:s', time() - 7 * 86400)]);
     DB::run('DELETE FROM api_tokens WHERE (revoked_at IS NOT NULL AND revoked_at < ?) OR (expires_at IS NOT NULL AND expires_at < ?)', [gmdate('Y-m-d H:i:s', time() - 30 * 86400), gmdate('Y-m-d H:i:s', time() - 30 * 86400)]);
     foreach (glob(STORAGE_PATH . '/logs/app-*.log') ?: [] as $f) {

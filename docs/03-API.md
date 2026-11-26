@@ -305,7 +305,8 @@ POST /games/{gameId}/files/{fileId}/link
 | `GET /admin/health` | حالة الخادم |
 | `GET /admin/downloads` | سجل التنزيلات |
 | `GET /admin/storage` | التخزين |
-| `GET /admin/logs` | سجل النشاط، مع فلاتر `q` و `action` و `user_id` و `from` |
+| `GET /admin/logs` | سجل الموقع الكامل، مع فلاتر `q` و `action` و `user_id` و `ip` و `from` و `to` و `since_id`، و`group` (`security`، `visitors`، `auth`، `users`، `games`، `files`، `catalog`، `system`). كل عنصر فيه `group` و`device` و`user_agent` و`meta` |
+| `GET /admin/logs/summary` | عدد الأحداث لكل مجموعة خلال 24 ساعة و7 أيام، وعدد الزوار (عناوين IP مختلفة) اليوم، و`latest_id` للوضع المباشر |
 
 ### بقية لوحة الإدارة (يستخدمها تطبيق الإدارة على Android)
 
@@ -331,6 +332,7 @@ POST /games/{gameId}/files/{fileId}/link
 | `GET /admin/storage/orphans` | `storage.manage` | ملفات على الأقراص غير مسجلة في المكتبة |
 | `POST /admin/storage/{cleanup|orphans|cache}` | `storage.manage` | تنظيف الرفع المتوقف، حذف الملفات اليتيمة، مسح الكاش |
 | `POST /admin/queue/run` | `files.upload` أو `settings.manage` | ينفذ المهام المنتظرة (حتى 25 مهمة أو 50 ثانية) |
+| `POST /links/{id}/click` | — | صفحة اللعبة تبلّغ عن فتح رابط خارجي (للسجل فقط، مرة كل 10 دقائق لكل زائر) |
 | `GET /admin/logs/errors` | `logs.view` | آخر الأخطاء من سجل الخادم، مع `level` (`error`، `warning`، `info`) |
 | `GET /admin/backups` | `backups.manage` | النسخ الاحتياطية، و`meta` فيها `frequency` و`keep` و`last_run` و`can_restore` |
 | `POST /admin/backups` | `backups.manage` | `{"include_media": true|false}` |

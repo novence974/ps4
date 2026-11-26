@@ -176,6 +176,7 @@ $router->group(['prefix' => '/api/v1', 'middleware' => ['api']], static function
     $r->post('/auth/resend-verification', [ApiAuth::class, 'resendVerification'], ['auth', 'throttle:api-resend,3,900']);
 
     $r->post('/games/{id:\d+}/files/{fileId:\d+}/link', [ApiUser::class, 'downloadLink']);
+    $r->post('/links/{id:\d+}/click', [ApiPublic::class, 'linkClick'], ['throttle:link-click,60,60']);
 
     $r->group(['prefix' => '/user', 'middleware' => ['auth']], static function ($r) {
         $r->get('/profile', [ApiUser::class, 'profile']);
@@ -258,6 +259,7 @@ $router->group(['prefix' => '/api/v1', 'middleware' => ['api']], static function
         $r->get('/downloads', [ApiAdmin::class, 'downloads']);
         $r->get('/storage', [ApiAdmin::class, 'storage']);
         $r->get('/logs', [ApiAdmin::class, 'logs']);
+        $r->get('/logs/summary', [ApiAdmin::class, 'logsSummary']);
 
         // everything else the web panel can do (used by the Android admin app)
         $r->post('/games/bulk', [ApiSystem::class, 'bulkGames']);

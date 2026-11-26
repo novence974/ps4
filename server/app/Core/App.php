@@ -32,6 +32,9 @@ final class App
         } catch (ValidationException $e) {
             $res = self::validationResponse($e, $req);
         } catch (\Throwable $e) {
+            if ($e instanceof HttpException && in_array($e->status, [403, 419, 429], true)) {
+                \App\Services\ActivityLog::security($e->status, $req);
+            }
             $res = ErrorHandler::render($e, $req);
         }
         $res = self::finalize($res, $req);

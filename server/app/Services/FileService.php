@@ -312,6 +312,7 @@ final class FileService
                 'ip' => $req->ip(), 'user_agent' => $req->userAgent(), 'created_at' => now(),
             ]);
             DB::run('UPDATE game_files SET download_count = download_count + 1 WHERE id = ?', [(int) $file['id']]);
+            ActivityLog::log('file.download', 'file', (int) $file['id'], (string) $file['original_name'], ['game_id' => (int) $file['game_id']], $userId);
             DB::run('UPDATE games SET download_count = download_count + 1 WHERE id = ?', [(int) $file['game_id']]);
         } catch (\Throwable $e) {
             \App\Core\Logger::error('recordDownload failed: ' . $e->getMessage());

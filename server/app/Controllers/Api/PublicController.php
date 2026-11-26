@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Controllers\Api;
 
 use App\Core\Auth;
+use App\Core\DB;
 use App\Core\HttpException;
 use App\Core\Response;
+use App\Services\ActivityLog;
 use App\Services\CatalogService;
 use App\Services\GameService;
 use App\Services\Presenter;
@@ -14,6 +16,17 @@ use App\Services\UpdateService;
 
 final class PublicController extends ApiController
 {
+    /** POST /api/v1/links/{id}/click — the game page reports a click on an external link (for the activity log). */
+    public function linkClick(string $id): Response
+    {
+        $l = DB::one('SELECT l.id, l.title, l.url, l.game_id, g.title AS game FROM game_links l JOIN games g ON g.id = l.game_id
+                      WHERE l.id = ? AND l.is_active = 1 AND g.is_published = 1', [(int) $id]);
+        if ($l && \App\Core\Cache::store()->increment('lclick:' . $l['id'] . ':' . (Auth::id() ?: $this->request->ip()), 600) === 1) {
+            ActivityLog::log('link.click', 'game', (int) $l['game_id'], $l['game'] . ' — ' . $l['title'], ['link_id' => (int) $l['id'], 'host' => parse_url($l['url'], PHP_URL_HOST)]);
+        }
+        return $this->ok(['recorded' => true]);
+    }
+
     /** GET /api/v1/status — server health for the apps' "server status" screens. */
     public function status(): Response
     {

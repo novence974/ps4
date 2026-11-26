@@ -839,11 +839,13 @@ final class GameService
             $n = DB::run('INSERT IGNORE INTO favorites (user_id, game_id, created_at) VALUES (?, ?, ?)', [$userId, $gameId, now()])->rowCount();
             if ($n) {
                 DB::run('UPDATE games SET favorite_count = favorite_count + 1 WHERE id = ?', [$gameId]);
+                ActivityLog::log('favorite.added', 'game', $gameId, (string) DB::value('SELECT title FROM games WHERE id = ?', [$gameId]), [], $userId);
             }
         } else {
             $n = DB::delete('favorites', 'user_id = ? AND game_id = ?', [$userId, $gameId]);
             if ($n) {
                 DB::run('UPDATE games SET favorite_count = GREATEST(favorite_count, 1) - 1 WHERE id = ?', [$gameId]);
+                ActivityLog::log('favorite.removed', 'game', $gameId, (string) DB::value('SELECT title FROM games WHERE id = ?', [$gameId]), [], $userId);
             }
         }
         return $on;

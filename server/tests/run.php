@@ -404,6 +404,19 @@ $S->add('إدارة الألعاب', 'الإخفاء يمنع ظهور اللع�
     expect_ok($http->post("/api/v1/admin/games/{$id}/publish", ['token' => $ctx->admin, 'json' => ['published' => true]]));
     expect_ok($http->get("/api/v1/games/{$id}"));
 });
+$S->add('السجلات', 'سجل الموقع: أحداث الأمان والزوار، التصفية بالمجموعة والملخص، وللمدير فقط', function () use ($http, $ctx) {
+    $http->post('/login', ['form' => ['login' => 'x', 'password' => 'y']]); // no CSRF token → 419, logged as a security event
+    $sec = expect_ok($http->get('/api/v1/admin/logs?group=security&per_page=20', ['token' => $ctx->admin]));
+    check((bool) array_filter($sec, static fn ($l) => $l['action'] === 'security.csrf' && $l['group'] === 'security'), 'refused request is logged');
+    foreach ($sec as $l) {
+        check($l['group'] === 'security', 'group filter only returns that group');
+    }
+    $sum = expect_ok($http->get('/api/v1/admin/logs/summary', ['token' => $ctx->admin]));
+    check($sum['latest_id'] > 0 && isset($sum['groups']['visitors'], $sum['groups']['security']), 'summary');
+    $newer = expect_ok($http->get('/api/v1/admin/logs?since_id=' . $sum['latest_id'], ['token' => $ctx->admin]));
+    check(count($newer) <= 1, 'since_id returns only newer entries');
+    expect_status($http->get('/api/v1/admin/logs/summary', ['token' => $ctx->A['token']]), 403, 'members cannot read the log');
+});
 $S->add('إدارة الألعاب', 'صور بالرابط: تُحفظ كما هي ولا تُنزَّل، وhttps فقط، وتتطلب صلاحية', function () use ($http, $ctx) {
     $g = create_game($http, $ctx, ['title' => 'zz-test LinkImg ' . $ctx->run]);
     $u = 'https://images.example.org/covers/zz-' . $ctx->run . '.jpg';

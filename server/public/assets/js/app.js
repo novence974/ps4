@@ -351,6 +351,17 @@
   }));
   $$('[data-media-video]').forEach((v) => v.addEventListener('play', () => document.dispatchEvent(new CustomEvent('upsl:media-play'))));
 
+  /* ------------------------------------------------------------ external link clicks (activity log) */
+  $$('a[data-link-id]').forEach((a) => a.addEventListener('click', () => {
+    if (!document.querySelector('meta[name="csrf-token"]')) return; // static copy: no server to tell
+    try {
+      fetch(BASE + '/api/v1/links/' + a.dataset.linkId + '/click', {
+        method: 'POST', keepalive: true, credentials: 'same-origin',
+        headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest', 'X-CSRF-Token': csrf() },
+      }).catch(() => {});
+    } catch (e) { /* never block the link */ }
+  }));
+
   /* ------------------------------------------------------------ copy / password helpers */
   $$('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); toast('success', 'تم نسخ الرابط', 2200); }

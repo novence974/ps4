@@ -137,7 +137,7 @@ $compatTag = ['perfect' => 'tag-ok', 'playable' => 'tag-ok', 'ingame' => 'tag-wa
               <div class="file-row">
                 <span class="ficon"><?= icon('external') ?></span>
                 <div><b><?= e($l['title']) ?></b><small><span><?= e(link_type_names()[$l['link_type']] ?? '') ?></span><?php if ($l['region']): ?><span><?= e(region_name($l['region'])) ?></span><?php endif; ?><span class="ltr"><?= e(parse_url($l['url'], PHP_URL_HOST) ?: '') ?></span></small></div>
-                <a class="btn btn-sm" href="<?= e($l['url']) ?>" target="_blank" rel="noopener noreferrer nofollow"><?= icon('external') ?>فتح</a>
+                <a class="btn btn-sm" href="<?= e($l['url']) ?>" target="_blank" rel="noopener noreferrer nofollow" data-link-id="<?= (int) $l['id'] ?>"><?= icon('external') ?>فتح</a>
               </div>
             <?php endforeach; ?>
           </div>
