@@ -1,9 +1,0 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.upsl.admin</groupId>
-  <artifactId>robo-aa</artifactId>
-  <version>1</version>
-  <dependencies>
-    <dependency><groupId>org.robolectric</groupId><artifactId>android-all-instrumented</artifactId><version>15-robolectric-12650502-i7</version></dependency>
-  </dependencies>
-</project>

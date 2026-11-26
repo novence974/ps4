@@ -3,6 +3,4 @@ server/config/config.php
 server/storage/*
 !server/storage/.gitkeep
 _site/
-clients/ps4-library/build/
-clients/android-admin/build/*.apk.idsig
 __pycache__/
