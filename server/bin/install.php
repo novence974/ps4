@@ -36,13 +36,14 @@ $in = [
     'db_socket' => $o['db-socket'] ?? '',
     'db_name' => $o['db-name'] ?? cli_ask('Database name', 'upsl'),
     'db_user' => $o['db-user'] ?? cli_ask('Database user', 'upsl'),
-    'db_pass' => $o['db-pass'] ?? ($interactive ? cli_ask('Database password', '', true) : ''),
+    // passwords can come from the environment so they never show in the process list or shell history
+    'db_pass' => $o['db-pass'] ?? (getenv('UPSL_DB_PASS') !== false ? (string) getenv('UPSL_DB_PASS') : ($interactive ? cli_ask('Database password', '', true) : '')),
     'app_url' => $o['url'] ?? cli_ask('Site URL', 'http://localhost:8000'),
     'timezone' => $o['timezone'] ?? 'Asia/Qatar',
     'site_name' => $o['site-name'] ?? '',
     'admin_username' => $o['admin-user'] ?? cli_ask('Super admin username', 'admin'),
     'admin_email' => $o['admin-email'] ?? cli_ask('Super admin e-mail'),
-    'admin_password' => $o['admin-pass'] ?? cli_ask('Super admin password (8+ chars, letters and digits)', '', true),
+    'admin_password' => $o['admin-pass'] ?? (getenv('UPSL_ADMIN_PASS') ?: null) ?? cli_ask('Super admin password (8+ chars, letters and digits)', '', true),
     'demo' => isset($o['demo']) || ($interactive && strtolower(cli_ask('Install the demo catalogue? (y/n)', 'y')) === 'y'),
     'force' => isset($o['force']),
 ];
