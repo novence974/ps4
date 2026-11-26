@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One-command install of the library on an alwaysdata account (run over SSH, from the account's home).
 #
-#   bash ~/www/ps4/server/deploy/alwaysdata/install.sh
+#   bash ~/ps4/server/deploy/alwaysdata/install.sh
 #
 # Before running it, in the alwaysdata panel:
 #   1. Databases > MySQL: create a database (e.g. ACCOUNT_upsl) and a user with full rights on it.
@@ -63,8 +63,8 @@ chmod -R go-rwx storage config
 say "تم. باقي خطوتان في لوحة alwaysdata:"
 cat <<EOF
   1) Web > Sites > عدّل الموقع ${ACCOUNT}.alwaysdata.net:
-       Type: PHP    PHP version: 8.3    Root directory: ${ROOT#$HOME}/public
-       SSL: فعّل «Force HTTPS usage»
+       Type: PHP    PHP version: 8.3    Root directory: ${ROOT#$HOME/}/public
+       (أو: mv ~/www ~/www-old && ln -s ${ROOT}/public ~/www  ثم Root directory: www)
   2) Advanced > Scheduled tasks > Add:
        Type: Command    Command: php ${ROOT}/bin/cron.php    Frequency: every 5 minutes (*/5 * * * *)
 

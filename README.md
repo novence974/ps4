@@ -7,7 +7,7 @@
 |---|---|---|
 | الموقع | موقع PHP + لوحة التحكم + قاعدة البيانات + API + الرفع المجزأ + الاختبارات + التوثيق | **مكتملة ومختبرة** (هذه الحزمة) |
 | النشر | النشر على GitHub: Pages للصفحات العامة، وCodespaces وDocker للموقع الكامل | **جاهز**: التصدير الثابت وDocker مختبران هنا؛ البناء مختبر على GitHub Actions — انظر [docs/09-GITHUB.md](docs/09-GITHUB.md) |
-| الخادم | الموقع الكامل على alwaysdata (مجاني) بأمر تثبيت واحد | **جاهز للتثبيت**: السكربت مختبر محلياً — انظر [docs/10-ALWAYSDATA.md](docs/10-ALWAYSDATA.md) |
+| الخادم | الموقع الكامل على alwaysdata (مجاني): https://novence.alwaysdata.net | **يعمل** — انظر [docs/10-ALWAYSDATA.md](docs/10-ALWAYSDATA.md) |
 
 ## ما الذي يعمل الآن
 

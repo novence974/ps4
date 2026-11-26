@@ -28,7 +28,13 @@
 بعد الاتصال عبر SSH انسخ هذا:
 
 ```bash
-cd ~/www && git clone --depth 1 https://github.com/novence974/ps4.git && bash ~/www/ps4/server/deploy/alwaysdata/install.sh
+cd ~ && git clone --depth 1 https://github.com/novence974/ps4.git && bash ~/ps4/server/deploy/alwaysdata/install.sh
+```
+
+ثم اجعل مجلد `www` يشير إلى مجلد الموقع العام (يغني عن كتابة مسار طويل في اللوحة):
+
+```bash
+mv ~/www ~/www-old && ln -s ~/ps4/server/public ~/www
 ```
 
 سيسألك عن:
@@ -48,8 +54,7 @@ cd ~/www && git clone --depth 1 https://github.com/novence974/ps4.git && bash ~/
 
 - Type: **PHP**
 - PHP version: **8.3**
-- Root directory: **`/www/ps4/server/public`**
-- تبويب SSL: فعّل **Force HTTPS usage**
+- Root directory: الجزء `/home/novence/` ثابت، واكتب بعده **`www`** فقط
 - احفظ.
 
 ## 5. المهام المجدولة (النسخ الاحتياطي، التنظيف، طابور المهام)
@@ -57,8 +62,16 @@ cd ~/www && git clone --depth 1 https://github.com/novence974/ps4.git && bash ~/
 **Advanced ← Scheduled tasks ← Add a scheduled task**
 
 - Type: **Execute the command**
-- Command: `php ~/www/ps4/server/bin/cron.php`
+- Command: `php ~/ps4/server/bin/cron.php`
 - Frequency: كل 5 دقائق — `*/5 * * * *`
+
+## فرض HTTPS
+
+الخادم يتعرّف على HTTPS عند alwaysdata، فيكفي تفعيل التحويل من إعدادات المكتبة:
+
+```bash
+sed -i "s/'force_https' => false/'force_https' => true/" ~/ps4/server/config/config.php
+```
 
 ## 6. التجربة
 
@@ -71,7 +84,7 @@ cd ~/www && git clone --depth 1 https://github.com/novence974/ps4.git && bash ~/
 عندما أضيف ميزات جديدة على GitHub:
 
 ```bash
-bash ~/www/ps4/server/deploy/alwaysdata/update.sh
+bash ~/ps4/server/deploy/alwaysdata/update.sh
 ```
 
 لا يمس الإعدادات ولا قاعدة البيانات ولا الصور المرفوعة.

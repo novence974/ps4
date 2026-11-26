@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Update the installed library to the latest version from GitHub (keeps config, database, uploads).
-#   bash ~/www/ps4/server/deploy/alwaysdata/update.sh
+#   bash ~/ps4/server/deploy/alwaysdata/update.sh
 set -euo pipefail
 REPO="$(cd "$(dirname "$0")/../../.." && pwd)"
 cd "$REPO"
