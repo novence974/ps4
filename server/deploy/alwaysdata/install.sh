@@ -23,9 +23,23 @@ fi
 
 php -r 'exit(PHP_VERSION_ID >= 80200 ? 0 : 1);' || { echo "يلزم PHP 8.2 أو أحدث. غيّره من لوحة alwaysdata: Environment > PHP"; exit 1; }
 
-read -r -p "اسم قاعدة البيانات [${ACCOUNT}_upsl]: " DB_NAME; DB_NAME="${DB_NAME:-${ACCOUNT}_upsl}"
-read -r -p "مستخدم قاعدة البيانات [${ACCOUNT}]: " DB_USER; DB_USER="${DB_USER:-${ACCOUNT}}"
-read -r -s -p "كلمة مرور قاعدة البيانات: " DB_PASS; echo
+echo "بيانات قاعدة البيانات من لوحة alwaysdata: Databases > MySQL (اسم القاعدة) و Users (اسم المستخدم يبدأ بـ ${ACCOUNT})."
+while :; do
+  read -r -p "اسم قاعدة البيانات [${ACCOUNT}_upsl]: " DB_NAME; DB_NAME="${DB_NAME:-${ACCOUNT}_upsl}"
+  read -r -p "مستخدم قاعدة البيانات [${ACCOUNT}]: " DB_USER; DB_USER="${DB_USER:-${ACCOUNT}}"
+  read -r -s -p "كلمة مرور قاعدة البيانات: " DB_PASS; echo
+  # test the credentials before asking anything else
+  if ERR=$(UPSL_DB_PASS="$DB_PASS" php -r '
+      try { new PDO("mysql:host=".$argv[1].";dbname=".$argv[2].";charset=utf8mb4", $argv[3], getenv("UPSL_DB_PASS"), [PDO::ATTR_TIMEOUT => 8]); }
+      catch (Throwable $e) { fwrite(STDOUT, $e->getMessage()); exit(1); }' "$DB_HOST" "$DB_NAME" "$DB_USER" 2>&1); then
+    echo "✓ الاتصال بقاعدة البيانات يعمل"; break
+  fi
+  echo "✗ تعذر الاتصال: $ERR"
+  case "$ERR" in
+    *1045*) echo "  اسم المستخدم أو كلمة المرور غير صحيحة. اضبط كلمة مرور المستخدم من Databases > MySQL > Users ثم أعد المحاولة." ;;
+    *1044*|*1049*) echo "  القاعدة غير موجودة أو المستخدم ليس له صلاحية عليها. تحقق من Databases > MySQL." ;;
+  esac
+done
 read -r -p "اسم مستخدم المدير [admin]: " ADMIN_USER; ADMIN_USER="${ADMIN_USER:-admin}"
 read -r -p "بريد المدير: " ADMIN_EMAIL
 while :; do
