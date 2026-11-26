@@ -98,6 +98,9 @@ $base = $isEdit ? url('/admin/games/' . $gid) : '';
           <input type="file" name="file" accept="image/jpeg,image/png,image/webp,image/gif" required>
           <p class="muted" style="font-size:var(--fs-xs)">يفضل 600×900 أو أكبر بنسبة 2:3. تُحوّل تلقائياً إلى WebP وJPEG بمقاسين.</p>
           <button class="btn btn-sm btn-primary" type="submit"><?= icon('upload') ?>رفع الغلاف</button></form>
+        <form method="post" action="<?= e($base . '/image/cover') ?>" class="row" style="margin-top:10px"><?= csrf_field() ?>
+          <input type="url" name="url" placeholder="أو رابط صورة من الإنترنت https://…" pattern="https://.*" maxlength="255" required style="flex:1" dir="ltr">
+          <button class="btn btn-sm" type="submit"><?= icon('link') ?>حفظ الرابط</button></form>
       </div>
     </div>
     <div class="glass card">
@@ -106,6 +109,9 @@ $base = $isEdit ? url('/admin/games/' . $gid) : '';
       <form method="post" action="<?= e($base . '/image/banner') ?>" enctype="multipart/form-data"><?= csrf_field() ?>
         <input type="file" name="file" accept="image/jpeg,image/png,image/webp,image/gif" required>
         <div class="form-actions" style="margin-top:10px"><button class="btn btn-sm btn-primary" type="submit"><?= icon('upload') ?>رفع الخلفية</button></div></form>
+      <form method="post" action="<?= e($base . '/image/banner') ?>" class="row" style="margin-top:10px"><?= csrf_field() ?>
+          <input type="url" name="url" placeholder="أو رابط صورة من الإنترنت https://…" pattern="https://.*" maxlength="255" required style="flex:1" dir="ltr">
+          <button class="btn btn-sm" type="submit"><?= icon('link') ?>حفظ الرابط</button></form>
     </div>
   </div>
   <div class="glass card">
@@ -113,6 +119,9 @@ $base = $isEdit ? url('/admin/games/' . $gid) : '';
     <form method="post" action="<?= e($base . '/screenshots') ?>" enctype="multipart/form-data" class="row" style="margin-bottom:14px"><?= csrf_field() ?>
       <input type="file" name="files[]" accept="image/jpeg,image/png,image/webp,image/gif" multiple required style="flex:1">
       <button class="btn btn-sm btn-primary" type="submit"><?= icon('upload') ?>رفع الصور</button></form>
+    <form method="post" action="<?= e($base . '/screenshots') ?>" class="row" style="margin-bottom:14px"><?= csrf_field() ?>
+      <input type="url" name="url" placeholder="أو رابط صورة من الإنترنت https://…" pattern="https://.*" maxlength="255" required style="flex:1" dir="ltr">
+      <button class="btn btn-sm" type="submit"><?= icon('link') ?>إضافة بالرابط</button></form>
     <?php if ($g['images']): ?>
       <div class="thumbs" data-sortable="<?= e($base . '/screenshots/reorder') ?>">
         <?php foreach ($g['images'] as $img): ?>

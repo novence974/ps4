@@ -110,6 +110,9 @@ final class AdminController extends ApiController
     public function cover(string $id): Response
     {
         $this->authorize('media.upload');
+        if ($this->request->str('url') !== '') {
+            return $this->ok(GameService::setImageUrl((int) $id, 'cover', $this->request->str('url')));
+        }
         [$tmp] = $this->incomingImage();
         return $this->ok(GameService::setImage((int) $id, 'cover', $tmp));
     }
@@ -117,6 +120,9 @@ final class AdminController extends ApiController
     public function banner(string $id): Response
     {
         $this->authorize('media.upload');
+        if ($this->request->str('url') !== '') {
+            return $this->ok(GameService::setImageUrl((int) $id, 'banner', $this->request->str('url')));
+        }
         [$tmp] = $this->incomingImage();
         return $this->ok(GameService::setImage((int) $id, 'banner', $tmp));
     }
@@ -124,6 +130,9 @@ final class AdminController extends ApiController
     public function screenshot(string $id): Response
     {
         $this->authorize('media.upload');
+        if ($this->request->str('url') !== '') {
+            return $this->ok(GameService::addScreenshotUrl((int) $id, $this->request->str('url'), $this->request->str('caption') ?: null), [], 201);
+        }
         [$tmp] = $this->incomingImage();
         return $this->ok(GameService::addScreenshot((int) $id, $tmp, $this->request->str('caption') ?: null), [], 201);
     }

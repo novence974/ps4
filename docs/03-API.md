@@ -276,8 +276,8 @@ POST /games/{gameId}/files/{fileId}/link
 
 | الطلب | ملاحظات |
 |---|---|
-| `POST /admin/games/{id}/cover` و `/banner` | `multipart` بالحقل `file` (JPEG أو PNG أو WebP أو GIF، وملفات SVG مرفوضة). يعيد روابط كل المقاسات |
-| `POST /admin/games/{id}/screenshots` | `file` و `caption?`. وللحذف: `DELETE …/screenshots/{imageId}` |
+| `POST /admin/games/{id}/cover` و `/banner` | `multipart` بالحقل `file` (JPEG أو PNG أو WebP أو GIF، وملفات SVG مرفوضة)، **أو** JSON `{"url":"https://…"}` لصورة من الإنترنت تُحفظ كما هي ولا يُنزّلها الخادم (https فقط، حتى 255 حرفاً). يعيد روابط كل المقاسات |
+| `POST /admin/games/{id}/screenshots` | `file` و `caption?`، أو `{"url":"https://…","caption":"…"}`. وللحذف: `DELETE …/screenshots/{imageId}` |
 | `GET/POST /admin/games/{id}/versions` | للتعديل `PUT …/versions/{vid}` وللحذف `DELETE` بنفس المسار. الحقول: `version`, `region`, `release_date`, `size`, `changelog`, `is_latest`, `notify` (إشعار من أضافها للمفضلة) |
 | `GET/POST /admin/games/{id}/links` | للتعديل والحذف `PUT/DELETE …/links/{lid}`. الحقول: `title`, `url` (http/https فقط)، `link_type` (`official_store`، `publisher`، `authorized_mirror`، `info`)، `region`, `sort_order`, `is_active` |
 | `POST /admin/games/{id}/compat` | يُنشئ أو يُحدّث حسب `target`. الحقول: `target`, `status` (`perfect`، `playable`، `ingame`، `menus`، `boots`، `nothing`، `unknown`)، `notes`, `tested_at`. وللحذف: `DELETE …/compat/{cid}` |

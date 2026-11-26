@@ -57,7 +57,7 @@
 
    ```
    title, platform, categories, description, release_year, developer, publisher, age_rating,
-   size, languages, region, version, edition, rating, product_code, trailer_url, published, featured
+   size, languages, region, version, edition, rating, product_code, trailer_url, cover_url, banner_url, published, featured
    ```
 
    - `platform`: `ps5` أو `ps4` أو `ps3` أو `ps2` أو `ps1` (أو الاسم الكامل).
@@ -229,3 +229,13 @@
   - تفعيل المؤثرات الصوتية.
   
   الموسيقى لا تعمل قبل أول تفاعل من الزائر مهما كانت الإعدادات.
+
+
+## صور الألعاب بالرابط
+
+في تبويب «الصور» بصفحة اللعبة (وفي تطبيق الإدارة: «تغيير الغلاف» ← «رابط صورة من الإنترنت») يمكن وضع رابط صورة بدل رفعها:
+
+- يُحفظ الرابط كما هو، ولا يُنزّل الخادم الصورة ولا يعدّلها أو يضغطها؛ المتصفح يعرضها مباشرة من موقعها الأصلي.
+- يجب أن يبدأ بـ `https://` وألا يتجاوز 255 حرفاً.
+- إذا حذف الموقع الأصلي الصورة أو منع عرضها من مواقع أخرى، تظهر فارغة؛ استبدل الرابط عندها.
+- في الاستيراد الجماعي استخدم العمودين `cover_url` و`banner_url`.

@@ -144,6 +144,12 @@ final class MediaService
         }
         $spec = self::SPECS[$purpose];
         $out = [];
+        if (preg_match('#^https?://#', $base)) {
+            foreach (array_keys($spec['variants']) as $v) {
+                $out[$v] = $out[$v . '_' . $spec['fallback']] = $base;
+            }
+            return $out;
+        }
         foreach (array_keys($spec['variants']) as $v) {
             $out[$v] = media_url($base, $v, 'webp', true);
             $out[$v . '_' . $spec['fallback']] = media_url($base, $v, $spec['fallback'], true);

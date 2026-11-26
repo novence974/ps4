@@ -404,6 +404,21 @@ $S->add('إدارة الألعاب', 'الإخفاء يمنع ظهور اللع�
     expect_ok($http->post("/api/v1/admin/games/{$id}/publish", ['token' => $ctx->admin, 'json' => ['published' => true]]));
     expect_ok($http->get("/api/v1/games/{$id}"));
 });
+$S->add('إدارة الألعاب', 'صور بالرابط: تُحفظ كما هي ولا تُنزَّل، وhttps فقط، وتتطلب صلاحية', function () use ($http, $ctx) {
+    $g = create_game($http, $ctx, ['title' => 'zz-test LinkImg ' . $ctx->run]);
+    $u = 'https://images.example.org/covers/zz-' . $ctx->run . '.jpg';
+    $c = expect_ok($http->post("/api/v1/admin/games/{$g['id']}/cover", ['token' => $ctx->admin, 'json' => ['url' => $u]]));
+    check($c['path'] === $u && ($c['urls']['md'] ?? '') === $u, 'cover link stored unchanged');
+    expect_ok($http->post("/api/v1/admin/games/{$g['id']}/banner", ['token' => $ctx->admin, 'json' => ['url' => $u . '?b=1']]));
+    $s = expect_ok($http->post("/api/v1/admin/games/{$g['id']}/screenshots", ['token' => $ctx->admin, 'json' => ['url' => $u . '?s=1', 'caption' => 'x']]), '', 201);
+    check(($s['lg'] ?? '') === $u . '?s=1', 'screenshot link');
+    foreach (['http://images.example.org/a.jpg', 'javascript:alert(1)', 'https://user:pw@x.org/a.jpg', 'https://x.org/a b.jpg', 'https://x.org/' . str_repeat('a', 260)] as $bad) {
+        expect_status($http->post("/api/v1/admin/games/{$g['id']}/cover", ['token' => $ctx->admin, 'json' => ['url' => $bad]]), 422, 'rejects ' . substr($bad, 0, 30));
+    }
+    expect_status($http->post("/api/v1/admin/games/{$g['id']}/cover", ['token' => $ctx->A['token'], 'json' => ['url' => $u]]), 403, 'member cannot set images');
+    $pub = expect_ok($http->get("/api/v1/admin/games/{$g['id']}", ['token' => $ctx->admin]));
+    check(($pub['cover']['sm'] ?? '') === $u && ($pub['banner']['sm'] ?? '') === $u . '?b=1', 'API returns the links');
+});
 $S->add('إدارة الألعاب', 'رفع الغلاف والخلفية والصور (WebP + JPEG)', function () use ($http, $ctx, $base) {
     $id = $ctx->full['id'];
     $png = make_png();

@@ -587,6 +587,50 @@ final class GameService
 
     // ================================================================ media
 
+    /** An image link from the internet, kept exactly as given: the server never downloads or changes it. */
+    public static function validImageUrl(string $url): string
+    {
+        $url = trim($url);
+        $parts = parse_url($url);
+        if ($url === '' || strlen($url) > 255 || !$parts || ($parts['scheme'] ?? '') !== 'https' || empty($parts['host'])
+            || isset($parts['user']) || isset($parts['pass']) || preg_match('/[\s"\'<>]/', $url)) {
+            throw ValidationException::single('url', 'أدخل رابط صورة يبدأ بـ https:// (حتى 255 حرفاً)');
+        }
+        return $url;
+    }
+
+    public static function setImageUrl(int $id, string $kind, string $url): array
+    {
+        $g = DB::one('SELECT id, title, cover_path, banner_path FROM games WHERE id = ?', [$id]) ?? throw new HttpException(404, 'اللعبة غير موجودة');
+        $purpose = $kind === 'banner' ? 'banner' : 'cover';
+        $url = self::validImageUrl($url);
+        $col = $purpose . '_path';
+        MediaService::deleteImage($g[$col]);
+        DB::update('games', [$col => $url, 'updated_at' => now()], 'id = ?', [$id]);
+        Cache::bump('games');
+        ActivityLog::log('game.media', 'game', $id, ($purpose === 'cover' ? 'رابط الغلاف: ' : 'رابط الخلفية: ') . $g['title']);
+        return ['path' => $url, 'urls' => MediaService::urls($url, $purpose)];
+    }
+
+    public static function addScreenshotUrl(int $id, string $url, ?string $caption = null): array
+    {
+        if (!DB::value('SELECT 1 FROM games WHERE id = ?', [$id])) {
+            throw new HttpException(404, 'اللعبة غير موجودة');
+        }
+        if ((int) DB::value('SELECT COUNT(*) FROM game_images WHERE game_id = ?', [$id]) >= 40) {
+            throw ValidationException::single('url', 'الحد الأقصى 40 صورة لكل لعبة');
+        }
+        $url = self::validImageUrl($url);
+        $imageId = DB::insert('game_images', [
+            'game_id' => $id, 'path' => $url, 'width' => 0, 'height' => 0,
+            'caption' => $caption !== null ? mb_substr($caption, 0, 190) : null,
+            'sort_order' => (int) DB::value('SELECT COALESCE(MAX(sort_order), 0) + 1 FROM game_images WHERE game_id = ?', [$id]),
+            'created_at' => now(),
+        ]);
+        Cache::bump('games');
+        return ['id' => $imageId, 'caption' => $caption, 'width' => 0, 'height' => 0] + (MediaService::urls($url, 'screenshot') ?? []);
+    }
+
     public static function setImage(int $id, string $kind, string $src): array
     {
         $g = DB::one('SELECT id, title, cover_path, banner_path FROM games WHERE id = ?', [$id]) ?? throw new HttpException(404, 'اللعبة غير موجودة');

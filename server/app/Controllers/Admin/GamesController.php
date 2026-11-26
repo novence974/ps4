@@ -112,6 +112,10 @@ final class GamesController extends Controller
     public function image(string $id, string $kind): Response
     {
         $this->authorize('media.upload');
+        if ($this->request->str('url') !== '') {
+            GameService::setImageUrl((int) $id, $kind === 'banner' ? 'banner' : 'cover', $this->request->str('url'));
+            return $this->done($kind === 'banner' ? 'تم حفظ رابط الخلفية' : 'تم حفظ رابط الغلاف', '/admin/games/' . (int) $id . '/edit?tab=media');
+        }
         [$tmp] = $this->uploadedTmp('file');
         GameService::setImage((int) $id, $kind === 'banner' ? 'banner' : 'cover', $tmp);
         return $this->done($kind === 'banner' ? 'تم تحديث صورة الخلفية' : 'تم تحديث الغلاف', '/admin/games/' . (int) $id . '/edit?tab=media');
@@ -120,6 +124,10 @@ final class GamesController extends Controller
     public function screenshots(string $id): Response
     {
         $this->authorize('media.upload');
+        if ($this->request->str('url') !== '') {
+            GameService::addScreenshotUrl((int) $id, $this->request->str('url'));
+            return $this->done('تمت إضافة الصورة بالرابط', '/admin/games/' . (int) $id . '/edit?tab=media');
+        }
         $files = $this->request->fileList('files');
         if (!$files) {
             throw ValidationException::single('files', 'اختر صورة واحدة على الأقل');

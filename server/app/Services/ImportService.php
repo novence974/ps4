@@ -24,6 +24,7 @@ final class ImportService
         'developer_name' => 'developer', 'المطور' => 'developer', 'الناشر' => 'publisher',
         'size_bytes' => 'size', 'الحجم' => 'size', 'language' => 'languages', 'اللغات' => 'languages',
         'code' => 'product_code', 'title_id' => 'product_code', 'serial' => 'product_code',
+        'cover' => 'cover_url', 'image' => 'cover_url', 'صورة الغلاف' => 'cover_url', 'banner' => 'banner_url', 'صورة الخلفية' => 'banner_url',
         'trailer' => 'trailer_url', 'video' => 'trailer_url', 'is_published' => 'published', 'is_featured' => 'featured',
         'pegi' => 'age_rating', 'esrb' => 'age_rating', 'score' => 'rating', 'الوصف' => 'description',
     ];
@@ -163,6 +164,8 @@ final class ImportService
                 'rating' => $r['rating'] ?? null,
                 'product_code' => $r['product_code'] ?? null,
                 'trailer_url' => $r['trailer_url'] ?? null,
+                'cover_url' => isset($r['cover_url']) && trim((string) $r['cover_url']) !== '' ? trim((string) $r['cover_url']) : null,
+                'banner_url' => isset($r['banner_url']) && trim((string) $r['banner_url']) !== '' ? trim((string) $r['banner_url']) : null,
                 'categories' => array_values(array_filter(array_map('trim', (array) $categories))),
                 'is_published' => self::bool($r['published'] ?? false),
                 'is_featured' => self::bool($r['featured'] ?? false),
@@ -178,6 +181,15 @@ final class ImportService
                 }
                 if ($input['trailer_url']) {
                     GameService::validateTrailer((string) $input['trailer_url']);
+                }
+                foreach (['cover_url', 'banner_url'] as $k) {
+                    if ($input[$k]) {
+                        try {
+                            GameService::validImageUrl($input[$k]);
+                        } catch (ValidationException $e) {
+                            $errors[$k] = $e->first();
+                        }
+                    }
                 }
             } catch (ValidationException $e) {
                 $errors += $e->errors;
@@ -195,6 +207,16 @@ final class ImportService
             ];
         }
         return ['summary' => $summary, 'rows' => $out];
+    }
+
+    /** Image links from the file are stored as given (never downloaded). */
+    private static function applyImages(int $gameId, array $images): void
+    {
+        foreach ($images as $kind => $url) {
+            if ($gameId && $url) {
+                GameService::setImageUrl($gameId, $kind, $url);
+            }
+        }
     }
 
     public static function run(string $token, string $mode, string $onDuplicate = 'skip'): array
@@ -216,6 +238,8 @@ final class ImportService
                     $res['skipped']++;
                     continue;
                 }
+                $images = ['cover' => $r['input']['cover_url'] ?? null, 'banner' => $r['input']['banner_url'] ?? null];
+                unset($r['input']['cover_url'], $r['input']['banner_url']);
                 try {
                     if ($r['status'] === 'duplicate') {
                         if ($onDuplicate === 'skip') {
@@ -226,12 +250,14 @@ final class ImportService
                             $changes = array_filter($r['input'], static fn ($v) => $v !== null && $v !== '' && $v !== []);
                             $changes['allow_duplicate'] = true;
                             GameService::save((int) $r['duplicate_of']['id'], $changes, true, false);
+                            self::applyImages((int) $r['duplicate_of']['id'], $images);
                             $res['updated']++;
                             continue;
                         }
                         $r['input']['allow_duplicate'] = true;
                     }
-                    GameService::save(null, $r['input'], false, false);
+                    $saved = GameService::save(null, $r['input'], false, false);
+                    self::applyImages((int) ($saved['id'] ?? 0), $images);
                     $res['created']++;
                 } catch (\Throwable $e) {
                     $res['failed']++;
