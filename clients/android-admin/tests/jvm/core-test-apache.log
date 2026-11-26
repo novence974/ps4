@@ -1,0 +1,52 @@
+Server: http://127.0.0.1:8081
+
+[Session & auth]
+  ✓ normalizeServer adds https and strips /api/v1
+  ✓ GET /status ok
+  ✓ wrong password → 422 with Arabic message
+  ✓ login ok and returns token
+  ✓ super admin has every permission ("*")
+  ✓ session keeps role level
+
+[Requests, errors, async delivery]
+  ✓ GET /admin/stats
+  ✓ 404 mapped to Api.Error
+  ✓ 422 field errors (title, platform_id)
+  ✓ paginated list has meta.pages
+  ✓ async call delivered on the main-thread handler
+
+[Game create, duplicate detection, media]
+  ✓ create game (201)
+  ✓ same game again → 409 duplicate_game with list
+  ✓ allow_duplicate saves it
+  ✓ multipart cover upload (WebP variants)
+  ✓ multipart screenshot with caption
+
+[Chunked uploads through Transfers]
+  ✓ enqueue starts the transfer service
+  ✓ 12 MB upload completes (3 chunks, SHA-256 verified)
+  ✓ file registered with the same SHA-256
+  ✓ pause stops between chunks
+  ✓ server kept the received chunks (2 of 7)
+  ✓ resume reuses the same server session and finishes
+  ✓ resumed file has the right SHA-256 on the server
+  ✓ cancel deletes the server session
+  ✓ blocked extension → failed with server message
+  ✓ lower the direct-assembly limit to 16 MB for the test
+  ✓ 18 MB upload goes through queue processing and completes
+
+[Admin actions used by the screens]
+  ✓ verify file integrity
+  ✓ edit file metadata
+  ✓ bulk feature
+  ✓ roles matrix
+  ✓ settings schema (4 groups for the super admin)
+  ✓ create database backup
+  ✓ stream backup download (authenticated)
+  ✓ delete backup
+
+[Clean-up and sign-out]
+  ✓ delete test games (with their files)
+  ✓ logout revokes the token (next call 401)
+
+37 passed, 0 failed

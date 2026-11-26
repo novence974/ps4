@@ -1,0 +1,22 @@
+20 checks passed, 0 problems
+OK (1 test)
+  ✓ login form has 3 inputs
+  ✓ plain http:// asks for confirmation first
+  ✓ wrong password shows the server error
+  ✓ login opens the dashboard
+  ✓ session saved with admin permissions
+  ✓ dashboard shows the numbers
+  ✓ games list loaded
+  ✓ tap opens the game
+  ✓ long-press selects games for bulk actions
+  ✓ game overview loaded
+  ✓ game form filled
+  ✓ client validation blocks an empty title
+  ✓ upload through a content:// document completes (done null)
+  ✓ users list
+  ✓ user detail with management actions
+  ✓ settings form built from the server schema
+  ✓ moderator signs in (has admin.access, not settings.manage)
+  ✓ dashboard hides sections the role cannot use
+  ✓ settings screen shows the no-permission state
+  ✓ server also refuses the call (403)

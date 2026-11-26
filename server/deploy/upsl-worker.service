@@ -1,0 +1,14 @@
+# systemd unit for the background worker (optional: cron.php also processes the queue every minute)
+[Unit]
+Description=ULTIMATE PS LIBRARY queue worker
+After=network.target mariadb.service
+
+[Service]
+User=www-data
+WorkingDirectory=/var/www/ultimate-ps-library/server
+ExecStart=/usr/bin/php bin/worker.php
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

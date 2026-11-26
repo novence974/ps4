@@ -1,0 +1,12 @@
+# Only for hosts where the document root cannot point to server/public:
+# forwards every request into public/ so app/, config/ and storage/ stay unreachable.
+Options -Indexes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+  RewriteRule ^(app|config|database|storage|bin|tests|deploy)(/|$) - [F,L]
+  # UPSL_ROOT_FORWARD tells the app to build URLs without the /public prefix
+  RewriteRule ^$ public/ [L,E=UPSL_ROOT_FORWARD:1]
+  RewriteCond %{REQUEST_URI} !/public/
+  RewriteRule ^(.*)$ public/$1 [L,E=UPSL_ROOT_FORWARD:1]
+</IfModule>

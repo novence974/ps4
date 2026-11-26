@@ -1,0 +1,840 @@
+{
+ "games": [
+  {
+   "id": 1,
+   "title": "Nebula Drift",
+   "platform": "ps5",
+   "categories": [
+    "racing",
+    "open-world"
+   ],
+   "year": 2024,
+   "developer": "Aurora Forge",
+   "publisher": "Polar Pixel",
+   "age": "PEGI 7",
+   "size": "48.5 GB",
+   "langs": "ar,en,fr,de",
+   "region": "EUR",
+   "version": "1.04",
+   "edition": "Standard",
+   "rating": 8.6,
+   "code": "DEMO-50001",
+   "featured": true,
+   "desc": "سباقات مستقبلية بين حلقات الكواكب بسرعات تتجاوز الصوت. اصنع مركبتك، واختر مسارك عبر عالم مفتوح من الطرق المعلّقة والأنفاق الضوئية، وتحدَّ أصدقاءك في سباقات جماعية.",
+   "cover": "covers/1.jpg",
+   "screens": [
+    "screens/1-1.jpg",
+    "screens/1-2.jpg",
+    "screens/1-3.jpg"
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Crimson Vanguard: Ashes",
+   "platform": "ps5",
+   "categories": [
+    "action",
+    "rpg"
+   ],
+   "year": 2023,
+   "developer": "Nightjar Studios",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 16",
+   "size": "92 GB",
+   "langs": "ar,en,fr,es",
+   "region": "GLOBAL",
+   "version": "1.12",
+   "edition": "Deluxe",
+   "rating": 9.1,
+   "code": "DEMO-50002",
+   "featured": true,
+   "desc": "ملحمة أكشن وتقمص أدوار في مملكة احترقت بنيران سحرية. طوّر مهارات قائد الطليعة القرمزية، وواجه زعماء عمالقة في معارك سريعة تعتمد على التوقيت والمراوغة.",
+   "cover": "covers/2.jpg",
+   "screens": [
+    "screens/2-1.jpg",
+    "screens/2-2.jpg",
+    "screens/2-3.jpg"
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Echoes of Qamar",
+   "platform": "ps5",
+   "categories": [
+    "adventure",
+    "open-world"
+   ],
+   "year": 2025,
+   "developer": "Saffron Gate",
+   "publisher": "Blue Minaret Studio",
+   "age": "PEGI 12",
+   "size": "67.3 GB",
+   "langs": "ar,en",
+   "region": "MENA",
+   "version": "1.01",
+   "edition": "Standard",
+   "rating": 8.9,
+   "code": "DEMO-50003",
+   "featured": true,
+   "desc": "رحلة استكشاف ليلية في صحراء أسطورية تتبدل كثبانها مع أطوار القمر. حل ألغاز المدن المنسية، وارسم خرائطك بنفسك، واستمع إلى حكايات القوافل بصوت عربي كامل.",
+   "cover": "covers/3.jpg",
+   "screens": [
+    "screens/3-1.jpg",
+    "screens/3-2.jpg",
+    "screens/3-3.jpg"
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Pitch Legends 26",
+   "platform": "ps5",
+   "categories": [
+    "football",
+    "sports"
+   ],
+   "year": 2025,
+   "developer": "Echo Valley Sports",
+   "publisher": "Polar Pixel",
+   "age": "PEGI 3",
+   "size": "55 GB",
+   "langs": "ar,en,fr,es,pt,de,it",
+   "region": "GLOBAL",
+   "version": "1.20",
+   "edition": "Standard",
+   "rating": 7.8,
+   "code": "DEMO-50004",
+   "desc": "كرة قدم سريعة بلمسات تحكم دقيقة وتعليق عربي. أنشئ ناديك من الصفر، وأدِر الانتقالات والتكتيك، ونافس في بطولات موسمية على الإنترنت.",
+   "cover": "covers/4.jpg",
+   "screens": [
+    "screens/4-1.jpg",
+    "screens/4-2.jpg",
+    "screens/4-3.jpg"
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Hollow Lantern",
+   "platform": "ps5",
+   "categories": [
+    "horror",
+    "adventure"
+   ],
+   "year": 2024,
+   "developer": "Iron Lantern",
+   "publisher": "Moonwell Games",
+   "age": "PEGI 18",
+   "size": "38.2 GB",
+   "langs": "en,fr,de",
+   "region": "EUR",
+   "version": "1.03",
+   "edition": "Standard",
+   "rating": 8.2,
+   "code": "DEMO-50005",
+   "desc": "رعب نفسي في غابة لا ينطفئ فيها فانوس واحد. اقتصد في الزيت، واستمع لأصوات الأشجار، واكتشف سر القرية التي اختفى سكانها في ليلة واحدة.",
+   "cover": "covers/5.jpg",
+   "screens": [
+    "screens/5-1.jpg",
+    "screens/5-2.jpg",
+    "screens/5-3.jpg"
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Tiny Orbit Builders",
+   "platform": "ps5",
+   "categories": [
+    "family",
+    "kids",
+    "strategy"
+   ],
+   "year": 2023,
+   "developer": "Velvet Comet",
+   "publisher": "Velvet Comet",
+   "age": "PEGI 3",
+   "size": "12.4 GB",
+   "langs": "ar,en,fr,es,it",
+   "region": "GLOBAL",
+   "version": "2.00",
+   "edition": "Family",
+   "rating": 7.5,
+   "code": "DEMO-50006",
+   "desc": "ابنِ كوكبك الصغير مع العائلة: مدن ملونة، روبوتات لطيفة، وألغاز بناء تناسب كل الأعمار مع لعب تعاوني على شاشة واحدة.",
+   "cover": "covers/6.jpg",
+   "screens": [
+    "screens/6-1.jpg",
+    "screens/6-2.jpg",
+    "screens/6-3.jpg"
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Starfall Tactics",
+   "platform": "ps4",
+   "categories": [
+    "strategy",
+    "rpg"
+   ],
+   "year": 2019,
+   "developer": "Atlas Peak Interactive",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 12",
+   "size": "21.8 GB",
+   "langs": "en,fr,de,ja",
+   "region": "EUR",
+   "version": "1.07",
+   "edition": "Standard",
+   "rating": 8.4,
+   "code": "DEMO-40001",
+   "desc": "استراتيجية أدوار تكتيكية بين النجوم. قُد أسطولاً صغيراً من المرتزقة، وطوّر طاقمك، وخطط لكل خطوة على شبكات معارك سداسية.",
+   "cover": "covers/7.jpg",
+   "screens": [
+    "screens/7-1.jpg",
+    "screens/7-2.jpg",
+    "screens/7-3.jpg"
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Desert Circuit Rally",
+   "platform": "ps4",
+   "categories": [
+    "racing"
+   ],
+   "year": 2018,
+   "developer": "Dune Circuit",
+   "publisher": "Polar Pixel",
+   "age": "PEGI 3",
+   "size": "34 GB",
+   "langs": "ar,en,fr",
+   "region": "MENA",
+   "version": "1.15",
+   "edition": "Gold",
+   "rating": 7.9,
+   "code": "DEMO-40002",
+   "featured": true,
+   "desc": "رالي صحراوي على الكثبان والوديان الصخرية. اضبط ضغط الإطارات وتعليق السيارة، وتعامل مع العواصف الرملية في مراحل طويلة نهاراً وليلاً.",
+   "cover": "covers/8.jpg",
+   "screens": [
+    "screens/8-1.jpg",
+    "screens/8-2.jpg",
+    "screens/8-3.jpg"
+   ]
+  },
+  {
+   "id": 9,
+   "title": "Iron Fist Arena",
+   "platform": "ps4",
+   "categories": [
+    "fighting"
+   ],
+   "year": 2017,
+   "developer": "Crimson Byte",
+   "publisher": "Crimson Byte",
+   "age": "PEGI 12",
+   "size": "28 GB",
+   "langs": "en,ja,ko",
+   "region": "ASIA",
+   "version": "2.30",
+   "edition": "Ultimate",
+   "rating": 8.0,
+   "code": "DEMO-40003",
+   "desc": "قتال ثنائي الأبعاد بشخصيات ميكانيكية وأساليب قتال متنوعة. وضع تدريب متقدم، وبطولات أونلاين، ونظام إعادة لتحليل كل ضربة.",
+   "cover": "covers/9.jpg",
+   "screens": [
+    "screens/9-1.jpg",
+    "screens/9-2.jpg",
+    "screens/9-3.jpg"
+   ]
+  },
+  {
+   "id": 10,
+   "title": "Moonwell Chronicles",
+   "platform": "ps4",
+   "categories": [
+    "rpg",
+    "adventure",
+    "open-world"
+   ],
+   "year": 2020,
+   "developer": "Moonwell Games",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 16",
+   "size": "61.5 GB",
+   "langs": "ar,en,fr,de,es",
+   "region": "EUR",
+   "version": "1.30",
+   "edition": "Game of the Year",
+   "rating": 9.3,
+   "code": "DEMO-40004",
+   "featured": true,
+   "desc": "لعبة تقمص أدوار في عالم مفتوح تحكمه بئر قمرية سحرية. أكثر من مئة مهمة جانبية، وحرفة وصناعة، وقرارات تغيّر نهاية القصة.",
+   "cover": "covers/10.jpg",
+   "screens": [
+    "screens/10-1.jpg",
+    "screens/10-2.jpg",
+    "screens/10-3.jpg"
+   ]
+  },
+  {
+   "id": 11,
+   "title": "Paper Kingdoms",
+   "platform": "ps4",
+   "categories": [
+    "family",
+    "kids"
+   ],
+   "year": 2016,
+   "developer": "Velvet Comet",
+   "publisher": "Moonwell Games",
+   "age": "PEGI 3",
+   "size": "6.2 GB",
+   "langs": "ar,en,fr,it",
+   "region": "GLOBAL",
+   "version": "1.02",
+   "edition": "Standard",
+   "rating": 7.2,
+   "code": "DEMO-40005",
+   "desc": "مغامرة ورقية مرحة تُطوى فيها المراحل وتُفتح كالكتب المنبثقة. مناسبة للأطفال مع وضع لعب لشخصين.",
+   "cover": "covers/11.jpg",
+   "screens": [
+    "screens/11-1.jpg",
+    "screens/11-2.jpg",
+    "screens/11-3.jpg"
+   ]
+  },
+  {
+   "id": 12,
+   "title": "Silent Harbor",
+   "platform": "ps4",
+   "categories": [
+    "horror"
+   ],
+   "year": 2019,
+   "developer": "Iron Lantern",
+   "publisher": "Iron Lantern",
+   "age": "PEGI 18",
+   "size": "30.4 GB",
+   "langs": "en,fr,de,es",
+   "region": "USA",
+   "version": "1.05",
+   "edition": "Standard",
+   "rating": 8.1,
+   "code": "DEMO-40006",
+   "desc": "ميناء مهجور يلفه ضباب كثيف وإشارات راديو غامضة. رعب استكشافي يعتمد على الصوت والإضاءة أكثر من المفاجآت.",
+   "cover": "covers/12.jpg",
+   "screens": [
+    "screens/12-1.jpg",
+    "screens/12-2.jpg",
+    "screens/12-3.jpg"
+   ]
+  },
+  {
+   "id": 13,
+   "title": "Thunder Valley Racers",
+   "platform": "ps3",
+   "categories": [
+    "racing"
+   ],
+   "year": 2010,
+   "developer": "Dune Circuit",
+   "publisher": "Echo Valley Sports",
+   "age": "PEGI 3",
+   "size": "9.1 GB",
+   "langs": "en,fr,de",
+   "region": "EUR",
+   "version": "1.02",
+   "edition": "Standard",
+   "rating": 7.6,
+   "code": "DEMO-30001",
+   "desc": "سباقات أركيد في وديان جبلية مع اختصارات سرية ومطاردات للشرطة، وتقسيم شاشة لأربعة لاعبين.",
+   "cover": "covers/13.jpg",
+   "screens": [
+    "screens/13-1.jpg",
+    "screens/13-2.jpg",
+    "screens/13-3.jpg"
+   ]
+  },
+  {
+   "id": 14,
+   "title": "Shadow of the Minaret",
+   "platform": "ps3",
+   "categories": [
+    "action",
+    "adventure"
+   ],
+   "year": 2011,
+   "developer": "Blue Minaret Studio",
+   "publisher": "Saffron Gate",
+   "age": "PEGI 16",
+   "size": "14.6 GB",
+   "langs": "ar,en,fr",
+   "region": "MENA",
+   "version": "1.01",
+   "edition": "Standard",
+   "rating": 8.7,
+   "code": "DEMO-30002",
+   "desc": "أكشن ومغامرة وتسلق فوق أسطح مدينة تاريخية خيالية. تحرك بين الظلال، وتتبع آثار جماعة سرية تريد سرقة مخطوطات المدينة.",
+   "cover": "covers/14.jpg",
+   "screens": [
+    "screens/14-1.jpg",
+    "screens/14-2.jpg",
+    "screens/14-3.jpg"
+   ]
+  },
+  {
+   "id": 15,
+   "title": "Galactic Goalkeepers",
+   "platform": "ps3",
+   "categories": [
+    "football",
+    "sports",
+    "family"
+   ],
+   "year": 2012,
+   "developer": "Echo Valley Sports",
+   "publisher": "Velvet Comet",
+   "age": "PEGI 3",
+   "size": "4.8 GB",
+   "langs": "ar,en,es",
+   "region": "GLOBAL",
+   "version": "1.00",
+   "edition": "Standard",
+   "rating": 7.1,
+   "code": "DEMO-30003",
+   "desc": "كرة قدم فضائية مرحة بجاذبية منخفضة وكرات تقفز بين الكواكب. مباريات قصيرة مناسبة للعائلة.",
+   "cover": "covers/15.jpg",
+   "screens": [
+    "screens/15-1.jpg",
+    "screens/15-2.jpg",
+    "screens/15-3.jpg"
+   ]
+  },
+  {
+   "id": 16,
+   "title": "Last Signal",
+   "platform": "ps3",
+   "categories": [
+    "horror"
+   ],
+   "year": 2009,
+   "developer": "Iron Lantern",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 18",
+   "size": "7.3 GB",
+   "langs": "en,de",
+   "region": "USA",
+   "version": "1.03",
+   "edition": "Standard",
+   "rating": 8.0,
+   "code": "DEMO-30004",
+   "desc": "محطة أبحاث في القطب الشمالي انقطع عنها الاتصال. موارد محدودة، وأجهزة إنذار، وشيء يتحرك في الأنفاق.",
+   "cover": "covers/16.jpg",
+   "screens": [
+    "screens/16-1.jpg",
+    "screens/16-2.jpg",
+    "screens/16-3.jpg"
+   ]
+  },
+  {
+   "id": 17,
+   "title": "Kingdom of Glass",
+   "platform": "ps3",
+   "categories": [
+    "rpg"
+   ],
+   "year": 2013,
+   "developer": "Moonwell Games",
+   "publisher": "Moonwell Games",
+   "age": "PEGI 12",
+   "size": "18.9 GB",
+   "langs": "en,fr,ja",
+   "region": "JPN",
+   "version": "1.10",
+   "edition": "Collector's",
+   "rating": 8.8,
+   "code": "DEMO-30005",
+   "desc": "لعبة أدوار كلاسيكية بمعارك أدوار ونظام بلّورات لتخصيص القدرات، وقصة عن مملكة تتحول ببطء إلى زجاج.",
+   "cover": "covers/17.jpg",
+   "screens": [
+    "screens/17-1.jpg",
+    "screens/17-2.jpg",
+    "screens/17-3.jpg"
+   ]
+  },
+  {
+   "id": 18,
+   "title": "Blade Dancers",
+   "platform": "ps3",
+   "categories": [
+    "fighting"
+   ],
+   "year": 2008,
+   "developer": "Crimson Byte",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 16",
+   "size": "6.5 GB",
+   "langs": "en,ja",
+   "region": "ASIA",
+   "version": "1.01",
+   "edition": "Standard",
+   "rating": 7.4,
+   "code": "DEMO-30006",
+   "desc": "قتال بالسيوف بإيقاع راقص وحركات مضادة دقيقة، مع عشرين مقاتلاً ووضع قصة لكل شخصية.",
+   "cover": "covers/18.jpg",
+   "screens": [
+    "screens/18-1.jpg",
+    "screens/18-2.jpg",
+    "screens/18-3.jpg"
+   ]
+  },
+  {
+   "id": 19,
+   "title": "Neon Highway 2049",
+   "platform": "ps2",
+   "categories": [
+    "racing"
+   ],
+   "year": 2004,
+   "developer": "Aurora Forge",
+   "publisher": "Polar Pixel",
+   "age": "PEGI 3",
+   "size": "3.9 GB",
+   "langs": "en,fr,de,it",
+   "region": "EUR",
+   "version": "1.00",
+   "edition": "Platinum",
+   "rating": 8.3,
+   "code": "DEMO-20001",
+   "featured": true,
+   "desc": "سباقات ليلية في طرق سريعة مضيئة على أنغام السينث. تعديل كامل للسيارات ومطاردات لا تنتهي في مدينة نيون.",
+   "cover": "covers/19.jpg",
+   "screens": [
+    "screens/19-1.jpg",
+    "screens/19-2.jpg",
+    "screens/19-3.jpg"
+   ]
+  },
+  {
+   "id": 20,
+   "title": "Sky Pirates of Dune",
+   "platform": "ps2",
+   "categories": [
+    "adventure",
+    "action"
+   ],
+   "year": 2003,
+   "developer": "Saffron Gate",
+   "publisher": "Moonwell Games",
+   "age": "PEGI 12",
+   "size": "4.2 GB",
+   "langs": "ar,en,fr",
+   "region": "MENA",
+   "version": "1.00",
+   "edition": "Standard",
+   "rating": 8.5,
+   "code": "DEMO-20002",
+   "desc": "قراصنة سفن طائرة فوق بحر من الرمال. معارك جوية، وجزر عائمة، وقصة صداقة بين ربان شاب وروبوت قديم.",
+   "cover": "covers/20.jpg",
+   "screens": [
+    "screens/20-1.jpg",
+    "screens/20-2.jpg",
+    "screens/20-3.jpg"
+   ]
+  },
+  {
+   "id": 21,
+   "title": "Castle Siege Masters",
+   "platform": "ps2",
+   "categories": [
+    "strategy"
+   ],
+   "year": 2005,
+   "developer": "Atlas Peak Interactive",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 12",
+   "size": "2.1 GB",
+   "langs": "en,de,pl",
+   "region": "EUR",
+   "version": "1.01",
+   "edition": "Standard",
+   "rating": 7.7,
+   "code": "DEMO-20003",
+   "desc": "استراتيجية حصار في الزمن الحقيقي: ابنِ الأسوار، ودرّب الرماة، واقتحم القلاع بالمنجنيقات والأبراج المتحركة.",
+   "cover": "covers/21.jpg",
+   "screens": [
+    "screens/21-1.jpg",
+    "screens/21-2.jpg",
+    "screens/21-3.jpg"
+   ]
+  },
+  {
+   "id": 22,
+   "title": "Garden Critters Party",
+   "platform": "ps2",
+   "categories": [
+    "family",
+    "kids"
+   ],
+   "year": 2006,
+   "developer": "Velvet Comet",
+   "publisher": "Velvet Comet",
+   "age": "PEGI 3",
+   "size": "1.6 GB",
+   "langs": "ar,en,fr,es",
+   "region": "GLOBAL",
+   "version": "1.00",
+   "edition": "Standard",
+   "rating": 6.9,
+   "code": "DEMO-20004",
+   "desc": "مجموعة ألعاب حفلات صغيرة بطلها حشرات الحديقة اللطيفة، لأربعة لاعبين بأدوات تحكم بسيطة.",
+   "cover": "covers/22.jpg",
+   "screens": [
+    "screens/22-1.jpg",
+    "screens/22-2.jpg",
+    "screens/22-3.jpg"
+   ]
+  },
+  {
+   "id": 23,
+   "title": "Fist of the Sandstorm",
+   "platform": "ps2",
+   "categories": [
+    "fighting"
+   ],
+   "year": 2002,
+   "developer": "Crimson Byte",
+   "publisher": "Saffron Gate",
+   "age": "PEGI 12",
+   "size": "2.8 GB",
+   "langs": "ar,en",
+   "region": "MENA",
+   "version": "1.00",
+   "edition": "Standard",
+   "rating": 7.8,
+   "code": "DEMO-20005",
+   "desc": "بطولة قتال في ساحات الصحراء مع أساليب مستوحاة من فنون قتالية متعددة، وموسيقى إيقاعية حماسية.",
+   "cover": "covers/23.jpg",
+   "screens": [
+    "screens/23-1.jpg",
+    "screens/23-2.jpg",
+    "screens/23-3.jpg"
+   ]
+  },
+  {
+   "id": 24,
+   "title": "Frozen Echo",
+   "platform": "ps2",
+   "categories": [
+    "horror",
+    "adventure"
+   ],
+   "year": 2004,
+   "developer": "Iron Lantern",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 16",
+   "size": "3.4 GB",
+   "langs": "en,fr",
+   "region": "USA",
+   "version": "1.00",
+   "edition": "Standard",
+   "rating": 8.0,
+   "code": "DEMO-20006",
+   "desc": "بلدة جبلية تحت الثلج يتكرر فيها صدى غريب كل ليلة. ألغاز بيئية ورعب هادئ مع تصوير سينمائي ثابت.",
+   "cover": "covers/24.jpg",
+   "screens": [
+    "screens/24-1.jpg",
+    "screens/24-2.jpg",
+    "screens/24-3.jpg"
+   ]
+  },
+  {
+   "id": 25,
+   "title": "Pixel Racer Turbo",
+   "platform": "ps1",
+   "categories": [
+    "racing"
+   ],
+   "year": 1997,
+   "developer": "Dune Circuit",
+   "publisher": "Polar Pixel",
+   "age": "PEGI 3",
+   "size": "640 MB",
+   "langs": "en,fr,de",
+   "region": "EUR",
+   "version": "1.0",
+   "edition": "Standard",
+   "rating": 7.9,
+   "code": "DEMO-10001",
+   "desc": "سباقات كلاسيكية بمضمار مصمم بدقة ومؤثرات ثلاثية الأبعاد مبكرة، مع بطولات وفتح سيارات سرية.",
+   "cover": "covers/25.jpg",
+   "screens": [
+    "screens/25-1.jpg",
+    "screens/25-2.jpg",
+    "screens/25-3.jpg"
+   ]
+  },
+  {
+   "id": 26,
+   "title": "Crystal Quest Saga",
+   "platform": "ps1",
+   "categories": [
+    "rpg"
+   ],
+   "year": 1998,
+   "developer": "Moonwell Games",
+   "publisher": "Moonwell Games",
+   "age": "PEGI 12",
+   "size": "1.9 GB",
+   "langs": "en,ja",
+   "region": "JPN",
+   "version": "1.1",
+   "edition": "Standard",
+   "rating": 9.0,
+   "code": "DEMO-10002",
+   "featured": true,
+   "desc": "لعبة أدوار أسطورية على ثلاثة أقراص: عالم واسع، وأبطال لكل منهم حكاية، ونظام استدعاء بلّوري شهير بين اللاعبين.",
+   "cover": "covers/26.jpg",
+   "screens": [
+    "screens/26-1.jpg",
+    "screens/26-2.jpg",
+    "screens/26-3.jpg"
+   ]
+  },
+  {
+   "id": 27,
+   "title": "Robo Rumble",
+   "platform": "ps1",
+   "categories": [
+    "fighting",
+    "action"
+   ],
+   "year": 1996,
+   "developer": "Crimson Byte",
+   "publisher": "Crimson Byte",
+   "age": "PEGI 7",
+   "size": "420 MB",
+   "langs": "en",
+   "region": "USA",
+   "version": "1.0",
+   "edition": "Standard",
+   "rating": 7.3,
+   "code": "DEMO-10003",
+   "desc": "روبوتات قتالية قابلة للتخصيص في حلبات متغيرة. قطع غيار تُجمع من البطولة لبناء آلتك المثالية.",
+   "cover": "covers/27.jpg",
+   "screens": [
+    "screens/27-1.jpg",
+    "screens/27-2.jpg",
+    "screens/27-3.jpg"
+   ]
+  },
+  {
+   "id": 28,
+   "title": "Haunted Manor",
+   "platform": "ps1",
+   "categories": [
+    "horror"
+   ],
+   "year": 1999,
+   "developer": "Iron Lantern",
+   "publisher": "Atlas Peak Interactive",
+   "age": "PEGI 16",
+   "size": "700 MB",
+   "langs": "en,fr,de",
+   "region": "EUR",
+   "version": "1.0",
+   "edition": "Standard",
+   "rating": 8.2,
+   "code": "DEMO-10004",
+   "desc": "قصر قديم وألغاز مفاتيح وكاميرات ثابتة. كلاسيكية رعب البقاء التي تعتمد على إدارة المخزون والذخيرة.",
+   "cover": "covers/28.jpg",
+   "screens": [
+    "screens/28-1.jpg",
+    "screens/28-2.jpg",
+    "screens/28-3.jpg"
+   ]
+  },
+  {
+   "id": 29,
+   "title": "Soccer Stars 98",
+   "platform": "ps1",
+   "categories": [
+    "football",
+    "sports"
+   ],
+   "year": 1998,
+   "developer": "Echo Valley Sports",
+   "publisher": "Echo Valley Sports",
+   "age": "PEGI 3",
+   "size": "520 MB",
+   "langs": "en,fr,es,it",
+   "region": "EUR",
+   "version": "1.0",
+   "edition": "Standard",
+   "rating": 7.0,
+   "code": "DEMO-10005",
+   "desc": "كرة قدم سريعة بأسلوب الأركيد مع بطولة كأس كاملة ومنتخبات خيالية.",
+   "cover": "covers/29.jpg",
+   "screens": [
+    "screens/29-1.jpg",
+    "screens/29-2.jpg",
+    "screens/29-3.jpg"
+   ]
+  },
+  {
+   "id": 30,
+   "title": "Tiny Tank Tactics",
+   "platform": "ps1",
+   "categories": [
+    "strategy",
+    "kids"
+   ],
+   "year": 1997,
+   "developer": "Velvet Comet",
+   "publisher": "Polar Pixel",
+   "age": "PEGI 3",
+   "size": "380 MB",
+   "langs": "en,fr",
+   "region": "GLOBAL",
+   "version": "1.0",
+   "edition": "Standard",
+   "rating": 7.4,
+   "code": "DEMO-10006",
+   "desc": "استراتيجية أدوار لطيفة بدبابات صغيرة ملونة ومعارك على طاولة الغرفة، مناسبة للصغار.",
+   "cover": "covers/30.jpg",
+   "screens": [
+    "screens/30-1.jpg",
+    "screens/30-2.jpg",
+    "screens/30-3.jpg"
+   ]
+  },
+  {
+   "id": 31,
+   "title": "Moonwell Chronicles",
+   "platform": "ps4",
+   "categories": [
+    "rpg",
+    "adventure",
+    "open-world"
+   ],
+   "year": 2020,
+   "developer": "Moonwell Games",
+   "publisher": "Atlas Peak Interactive",
+   "age": "ESRB M",
+   "size": "61.9 GB",
+   "langs": "en,fr,es",
+   "region": "USA",
+   "version": "1.30",
+   "edition": "Game of the Year",
+   "rating": 9.3,
+   "code": "DEMO-40014",
+   "published": false,
+   "desc": "النسخة الأمريكية من Moonwell Chronicles (مثال توضيحي لاكتشاف التكرار بين المناطق).",
+   "cover": "covers/10.jpg",
+   "screens": [
+    "screens/10-1.jpg",
+    "screens/10-2.jpg",
+    "screens/10-3.jpg"
+   ]
+  }
+ ]
+}

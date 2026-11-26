@@ -1,0 +1,114 @@
+{
+    "date": "2026-11-25T16:50:20+00:00",
+    "base": "http://127.0.0.1:8080",
+    "published_games": 5030,
+    "requests_per_scenario": 400,
+    "concurrency": 16,
+    "php": "8.3.6",
+    "db": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+    "cpu_cores": 2,
+    "results": {
+        "API: games list (random page)": {
+            "n": 400,
+            "p50": 13.4,
+            "p95": 46.8,
+            "p99": 76.1,
+            "max": 101.7,
+            "rps": 873,
+            "errors": 0,
+            "kb": 3.2
+        },
+        "API: filter platform+category, sort rating": {
+            "n": 400,
+            "p50": 13.3,
+            "p95": 29.1,
+            "p99": 84.3,
+            "max": 98.2,
+            "rps": 960.4,
+            "errors": 0,
+            "kb": 2.9
+        },
+        "API: full-text search (unique queries)": {
+            "n": 400,
+            "p50": 105.5,
+            "p95": 140,
+            "p99": 154.3,
+            "max": 167.6,
+            "rps": 142.4,
+            "errors": 0,
+            "kb": 0.7
+        },
+        "API: instant search suggestions": {
+            "n": 400,
+            "p50": 3.8,
+            "p95": 123.1,
+            "p99": 145.8,
+            "max": 190.9,
+            "rps": 432.8,
+            "errors": 0,
+            "kb": 0.4
+        },
+        "API: game details (random game)": {
+            "n": 400,
+            "p50": 22.4,
+            "p95": 33.4,
+            "p99": 37.1,
+            "max": 40.9,
+            "rps": 656,
+            "errors": 0,
+            "kb": 0.9
+        },
+        "API: platforms": {
+            "n": 400,
+            "p50": 6.9,
+            "p95": 11.5,
+            "p99": 14.1,
+            "max": 19.2,
+            "rps": 2053.8,
+            "errors": 0,
+            "kb": 1.9
+        },
+        "WEB: home page": {
+            "n": 400,
+            "p50": 21.1,
+            "p95": 48.3,
+            "p99": 191.7,
+            "max": 216.6,
+            "rps": 548.1,
+            "errors": 0,
+            "kb": 7.4
+        },
+        "WEB: browse + search page": {
+            "n": 400,
+            "p50": 17.7,
+            "p95": 123.5,
+            "p99": 227.7,
+            "max": 242.6,
+            "rps": 523,
+            "errors": 0,
+            "kb": 6.3
+        },
+        "WEB: game page": {
+            "n": 400,
+            "p50": 37.5,
+            "p95": 81.4,
+            "p99": 97.3,
+            "max": 105,
+            "rps": 348.2,
+            "errors": 0,
+            "kb": 4.7
+        }
+    },
+    "explain_list": {
+        "id": 1,
+        "select_type": "SIMPLE",
+        "table": "g",
+        "type": "ref",
+        "possible_keys": "idx_games_pub_created,idx_games_pub_rating,idx_games_pub_downloads,idx_games_pub_title,idx_games_pub_updated",
+        "key": "idx_games_pub_created",
+        "key_len": "1",
+        "ref": "const",
+        "rows": "5030",
+        "Extra": "Using where; Using index"
+    }
+}

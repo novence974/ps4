@@ -1,0 +1,2 @@
+# Every minute: queue, upload cleanup, scheduled backups, pruning
+* * * * * www-data php /var/www/ultimate-ps-library/server/bin/cron.php >> /var/www/ultimate-ps-library/server/storage/logs/cron.log 2>&1

@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin
+Disallow: /api/
+Disallow: /account
+Disallow: /dl/
+Disallow: /download/
+Disallow: /install.php

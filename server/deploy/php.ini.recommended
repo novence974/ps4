@@ -1,0 +1,10 @@
+; Recommended PHP settings for ULTIMATE PS LIBRARY
+upload_max_filesize = 32M
+post_max_size = 64M          ; chunk size is capped at 90% of this value
+memory_limit = 256M
+max_execution_time = 300
+expose_php = Off
+session.cookie_httponly = 1
+session.use_strict_mode = 1
+opcache.enable = 1
+opcache.validate_timestamps = 1

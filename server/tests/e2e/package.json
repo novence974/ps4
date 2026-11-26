@@ -1,0 +1,11 @@
+{
+  "name": "upsl-e2e",
+  "private": true,
+  "description": "ULTIMATE PS LIBRARY — browser end-to-end tests (real Chrome through puppeteer-core)",
+  "scripts": {
+    "test": "node browser-e2e.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.11.1"
+  }
+}

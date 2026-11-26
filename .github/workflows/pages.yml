@@ -1,0 +1,78 @@
+# Builds the library with its demo catalogue on a temporary PHP + MariaDB server,
+# exports the public pages as a static site and publishes it on GitHub Pages.
+name: Publish site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    services:
+      db:
+        image: mariadb:10.11
+        env:
+          MARIADB_DATABASE: upsl
+          MARIADB_USER: upsl
+          MARIADB_PASSWORD: ci-db-pass
+          MARIADB_ROOT_PASSWORD: ci-root-pass
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, gd, mbstring, fileinfo, sodium, zip, intl, exif
+          tools: none
+
+      - name: Work out the site path
+        id: path
+        run: |
+          repo="${{ github.event.repository.name }}"
+          if [ "$repo" = "${{ github.repository_owner }}.github.io" ]; then base=""; else base="/$repo"; fi
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+
+      - name: Install the library with the demo catalogue
+        working-directory: server
+        run: |
+          php bin/install.php --db-host=127.0.0.1 --db-name=upsl --db-user=upsl --db-pass=ci-db-pass \
+            --url=http://127.0.0.1:8099 --admin-user=admin --admin-email=admin@example.com \
+            --admin-pass="Ci-$(openssl rand -hex 12)" --demo
+
+      - name: Start a temporary server
+        working-directory: server
+        run: |
+          php -S 127.0.0.1:8099 -t public public/index.php > /tmp/php.log 2>&1 &
+          for i in $(seq 1 30); do curl -fs http://127.0.0.1:8099/ >/dev/null && break; sleep 1; done
+
+      - name: Export static pages
+        run: bash tools/export_static.sh http://127.0.0.1:8099 _site "${{ steps.path.outputs.base }}"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

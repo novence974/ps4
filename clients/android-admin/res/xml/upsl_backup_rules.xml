@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 6–11 auto backup: never copy the sign-in token or the upload queue to cloud backups. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="upsl_admin.xml" />
+    <exclude domain="sharedpref" path="upsl_transfers.xml" />
+</full-backup-content>

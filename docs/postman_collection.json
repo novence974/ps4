@@ -1,0 +1,2263 @@
+{
+ "info": {
+  "name": "ULTIMATE PS LIBRARY API v1",
+  "description": "مجموعة طلبات لواجهة /api/v1. اضبط المتغيرات base و login و password ثم شغّل المجموعة: Auth → Login يحفظ الرمز تلقائياً. التشغيل الكامل آمن: ما يُنشأ (لعبة وتصنيف وتحديث تجريبي) يُحذف في مجلد Finish، والطلبات التي تعدّل بيانات قائمة موجودة في المجلد الأخير وتُرسل يدوياً.",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+ },
+ "auth": {
+  "type": "bearer",
+  "bearer": [
+   {
+    "key": "token",
+    "value": "{{token}}",
+    "type": "string"
+   }
+  ]
+ },
+ "variable": [
+  {
+   "key": "base",
+   "value": "http://127.0.0.1:8080"
+  },
+  {
+   "key": "token",
+   "value": ""
+  },
+  {
+   "key": "login",
+   "value": "admin"
+  },
+  {
+   "key": "password",
+   "value": ""
+  },
+  {
+   "key": "gameId",
+   "value": "10"
+  },
+  {
+   "key": "fileId",
+   "value": "6"
+  },
+  {
+   "key": "uploadId",
+   "value": ""
+  },
+  {
+   "key": "newGameId",
+   "value": ""
+  },
+  {
+   "key": "newCategoryId",
+   "value": ""
+  },
+  {
+   "key": "newUpdateId",
+   "value": ""
+  }
+ ],
+ "item": [
+  {
+   "name": "Public",
+   "item": [
+    {
+     "name": "Status",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/status",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "status"
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('ok', () => pm.expect(pm.response.json().ok).to.eql(true));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Platforms",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/platforms",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "platforms"
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('ok', () => pm.expect(pm.response.json().ok).to.eql(true));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Platform by slug",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/platforms/ps4",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "platforms",
+        "ps4"
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    },
+    {
+     "name": "Categories",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/categories",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "categories"
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    },
+    {
+     "name": "Games (filtered)",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/games?platform=ps4&category=rpg&sort=rating&per_page=12&page=1",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "games"
+       ],
+       "query": [
+        {
+         "key": "platform",
+         "value": "ps4"
+        },
+        {
+         "key": "category",
+         "value": "rpg"
+        },
+        {
+         "key": "sort",
+         "value": "rating"
+        },
+        {
+         "key": "per_page",
+         "value": "12"
+        },
+        {
+         "key": "page",
+         "value": "1"
+        }
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('ok', () => pm.expect(pm.response.json().ok).to.eql(true));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Game details",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/games/{{gameId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "games",
+        "{{gameId}}"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Related games",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/games/{{gameId}}/related",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "games",
+        "{{gameId}}",
+        "related"
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    },
+    {
+     "name": "Search",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/search?q=moon",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "search"
+       ],
+       "query": [
+        {
+         "key": "q",
+         "value": "moon"
+        }
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    },
+    {
+     "name": "Search suggestions",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/search?q=moo&suggest=1",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "search"
+       ],
+       "query": [
+        {
+         "key": "q",
+         "value": "moo"
+        },
+        {
+         "key": "suggest",
+         "value": "1"
+        }
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    },
+    {
+     "name": "Updates feed",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/updates",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "updates"
+       ]
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "Auth",
+   "item": [
+    {
+     "name": "Login",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/auth/login",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "auth",
+        "login"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"login\": \"{{login}}\",\n  \"password\": \"{{password}}\",\n  \"device_name\": \"Postman\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('ok', () => pm.expect(pm.response.json().ok).to.eql(true));",
+         "pm.collectionVariables.set('token', pm.response.json().data.token);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Forgot password",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/auth/forgot-password",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "auth",
+        "forgot-password"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"email\": \"new-user@example.com\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    },
+    {
+     "name": "Resend verification",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/auth/resend-verification",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "auth",
+        "resend-verification"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "User",
+   "item": [
+    {
+     "name": "Profile",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/profile",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "profile"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('ok', () => pm.expect(pm.response.json().ok).to.eql(true));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Preferences",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/preferences",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "preferences"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"theme\": \"dark\",\n  \"music\": true,\n  \"volume\": 35,\n  \"sfx\": true\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Favorites",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/favorites",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "favorites"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Add favorite",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/favorites",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "favorites"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"game_id\": \"{{gameId}}\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Remove favorite",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/favorites/{{gameId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "favorites",
+        "{{gameId}}"
+       ]
+      }
+     }
+    },
+    {
+     "name": "View history",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/history",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "history"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Clear history",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/history",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "history"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Downloads history",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/downloads",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "downloads"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Updates for my favorites",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/updates",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "updates"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Notifications",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/notifications",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "notifications"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Mark all read",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/notifications/read",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "notifications",
+        "read"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Connected devices",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/tokens",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "tokens"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "Downloads",
+   "item": [
+    {
+     "name": "Signed download link",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/games/{{gameId}}/files/{{fileId}}/link",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "games",
+        "{{gameId}}",
+        "files",
+        "{{fileId}}",
+        "link"
+       ]
+      },
+      "description": "يعيد url موقّعاً (يدعم Range) مع size و sha256. افتح url بطلب GET عادي للتنزيل."
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('ok', () => pm.expect(pm.response.json().ok).to.eql(true));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Admin — games",
+   "item": [
+    {
+     "name": "Stats",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/stats",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "stats"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Health",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/health",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "health"
+       ]
+      }
+     }
+    },
+    {
+     "name": "List (incl. hidden)",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games?published=0",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games"
+       ],
+       "query": [
+        {
+         "key": "published",
+         "value": "0"
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Create game",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"platform_id\": 2,\n  \"title\": \"لعبة جديدة\",\n  \"categories\": [\n    \"action\",\n    \"rpg\"\n  ],\n  \"release_year\": 2024,\n  \"size\": \"35 GB\",\n  \"languages\": \"ar|en\",\n  \"region\": \"MENA\",\n  \"rating\": 8.5,\n  \"developer\": \"Studio\",\n  \"publisher\": \"Publisher\",\n  \"is_published\": false\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "if (pm.response.code === 201) pm.collectionVariables.set('newGameId', pm.response.json().data.id);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Check duplicates",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/check-duplicates?title=Moonwell Chronicles&platform_id=2",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "check-duplicates"
+       ],
+       "query": [
+        {
+         "key": "title",
+         "value": "Moonwell Chronicles"
+        },
+        {
+         "key": "platform_id",
+         "value": "2"
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Get game",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Update game (partial)",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"rating\": 9.1,\n  \"is_featured\": true\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Publish",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}/publish",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}",
+        "publish"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"published\": true\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Upload cover",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}/cover",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}",
+        "cover"
+       ]
+      },
+      "body": {
+       "mode": "formdata",
+       "formdata": [
+        {
+         "key": "file",
+         "type": "file",
+         "src": ""
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Add version",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}/versions",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}",
+        "versions"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"version\": \"1.05\",\n  \"region\": \"EUR\",\n  \"changelog\": \"إصلاحات\",\n  \"is_latest\": true\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Add link",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}/links",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}",
+        "links"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"title\": \"المتجر الرسمي\",\n  \"url\": \"https://store.example.com/game\",\n  \"link_type\": \"official_store\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Set compatibility",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}/compat",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}",
+        "compat"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"target\": \"PS5\",\n  \"status\": \"playable\",\n  \"notes\": \"يعمل بالتوافق الرجعي\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Duplicates report",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/duplicates",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "duplicates"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "Admin — chunked upload",
+   "item": [
+    {
+     "name": "1. Init (or resume)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/uploads/init",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "uploads",
+        "init"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"purpose\": \"game_file\",\n  \"game_id\": \"{{newGameId}}\",\n  \"filename\": \"hello.txt\",\n  \"size\": 11,\n  \"file_type\": \"other\",\n  \"access_level\": \"registered\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "const d = pm.response.json().data; pm.collectionVariables.set('uploadId', d.upload_id); console.log('chunks', d.total_chunks, 'received', d.received);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "2. Chunk (base64 JSON variant)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/uploads/chunk",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "uploads",
+        "chunk"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"upload_id\": \"{{uploadId}}\",\n  \"chunk_index\": 0,\n  \"data_base64\": \"aGVsbG8gd29ybGQ=\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      },
+      "description": "البديل المفضل للملفات الكبيرة: جسم ثنائي خام مع الترويسات X-Upload-Id و X-Chunk-Index و X-Chunk-Sha256."
+     }
+    },
+    {
+     "name": "3. Status / resume info",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/uploads/{{uploadId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "uploads",
+        "{{uploadId}}"
+       ]
+      }
+     }
+    },
+    {
+     "name": "4. Complete",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/uploads/complete",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "uploads",
+        "complete"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"upload_id\": \"{{uploadId}}\",\n  \"sha256\": \"b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Cancel",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/uploads/{{uploadId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "uploads",
+        "{{uploadId}}"
+       ]
+      },
+      "description": "يلغي رفعاً غير مكتمل (يعيد 409 إن كان الرفع قد اكتمل)."
+     }
+    },
+    {
+     "name": "Uploads list",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/uploads",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "uploads"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "Admin — other",
+   "item": [
+    {
+     "name": "Platforms",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/platforms",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "platforms"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Create category",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/categories",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "categories"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"name\": \"تصنيف تجريبي\",\n  \"name_en\": \"Sample\",\n  \"slug\": \"postman-sample\",\n  \"color\": \"#8b7cff\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "if (pm.response.code === 201) pm.collectionVariables.set('newCategoryId', pm.response.json().data.id);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Users",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/users?q=&role=&status=",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "users"
+       ],
+       "query": [
+        {
+         "key": "q",
+         "value": ""
+        },
+        {
+         "key": "role",
+         "value": ""
+        },
+        {
+         "key": "status",
+         "value": ""
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Publish update",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/updates",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "updates"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"type\": \"patch\",\n  \"game_id\": \"{{newGameId}}\",\n  \"title\": \"تحديث 1.05 (تجربة)\",\n  \"body\": \"تحسينات\",\n  \"is_published\": false,\n  \"notify_favorites\": false\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "if (pm.response.code === 201) pm.collectionVariables.set('newUpdateId', pm.response.json().data.id);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Send notification",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/notifications",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "notifications"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"title\": \"تجربة إشعار\",\n  \"body\": \"رسالة اختبار من Postman\",\n  \"link\": \"/updates\",\n  \"audience\": \"user\",\n  \"user\": \"{{login}}\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      },
+      "description": "يرسل إلى حسابك فقط. للإرسال للجميع اجعل audience = \"all\"."
+     }
+    },
+    {
+     "name": "Files of game",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{gameId}}/files",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{gameId}}",
+        "files"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Verify file SHA-256",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/files/{{fileId}}/verify",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "files",
+        "{{fileId}}",
+        "verify"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Downloads log",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/downloads",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "downloads"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Storage",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/storage",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "storage"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Activity log",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/logs",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "logs"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "Finish (cleanup)",
+   "item": [
+    {
+     "name": "Delete sample update",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/updates/{{newUpdateId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "updates",
+        "{{newUpdateId}}"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Delete sample category",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/categories/{{newCategoryId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "categories",
+        "{{newCategoryId}}"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Delete game",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/games/{{newGameId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "games",
+        "{{newGameId}}"
+       ]
+      }
+     }
+    },
+    {
+     "name": "Logout",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/auth/logout",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "auth",
+        "logout"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "Manual examples (edit values first)",
+   "description": "هذه الطلبات تعدّل بيانات حقيقية. عدّل القيم ثم أرسلها يدوياً. عند تشغيل المجموعة كاملة تأتي بعد تسجيل الخروج فترفض بـ 401 ولا تغيّر شيئاً.",
+   "item": [
+    {
+     "name": "Register",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/auth/register",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "auth",
+        "register"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"username\": \"<اسم المستخدم>\",\n  \"email\": \"<البريد>\",\n  \"password\": \"<كلمة مرور قوية>\",\n  \"password_confirmation\": \"<نفس كلمة المرور>\",\n  \"device_name\": \"Postman\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      },
+      "auth": {
+       "type": "noauth"
+      },
+      "description": "استبدل القيم ثم أرسل. يُنشئ حساباً حقيقياً."
+     }
+    },
+    {
+     "name": "Reset password",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/auth/reset-password",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "auth",
+        "reset-password"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"token\": \"<64 hex from the e-mail>\",\n  \"password\": \"Another-pass-2026\",\n  \"password_confirmation\": \"Another-pass-2026\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      },
+      "auth": {
+       "type": "noauth"
+      }
+     }
+    },
+    {
+     "name": "Update profile",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/profile",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "profile"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"display_name\": \"اسمي\",\n  \"bio\": \"نبذة قصيرة\",\n  \"email\": \"new-user@example.com\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Change password",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/user/password",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "user",
+        "password"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"current_password\": \"…\",\n  \"password\": \"New-pass-2026\",\n  \"password_confirmation\": \"New-pass-2026\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Update platform",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/platforms/2",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "platforms",
+        "2"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"install_notes\": \"الحزم الرسمية تُثبّت من المتجر أو القرص.\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Update user",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/users/2",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "users",
+        "2"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"role_id\": 3,\n  \"status\": \"active\",\n  \"can_download\": true\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Update file access",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base}}/api/v1/admin/files/{{fileId}}",
+       "host": [
+        "{{base}}"
+       ],
+       "path": [
+        "api",
+        "v1",
+        "admin",
+        "files",
+        "{{fileId}}"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"access_level\": \"verified\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

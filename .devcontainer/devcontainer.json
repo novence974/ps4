@@ -1,0 +1,9 @@
+{
+  "name": "Ultimate PS Library",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": { "ghcr.io/devcontainers/features/docker-in-docker:2": {} },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "docker compose up -d --build",
+  "forwardPorts": [8080],
+  "portsAttributes": { "8080": { "label": "Library", "onAutoForward": "openBrowser" } }
+}

@@ -1,0 +1,34 @@
+# Full library: docker compose up -d  →  http://localhost:8080
+# Change the passwords in .env (copy .env.example) before using it outside your machine.
+services:
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: upsl
+      MARIADB_USER: upsl
+      MARIADB_PASSWORD: ${DB_PASS:-change-me-db}
+      MARIADB_RANDOM_ROOT_PASSWORD: "1"
+    volumes: [db:/var/lib/mysql]
+
+  app:
+    build: ./server
+    restart: unless-stopped
+    depends_on: [db]
+    ports: ["8080:80"]
+    environment:
+      DB_HOST: db
+      DB_NAME: upsl
+      DB_USER: upsl
+      DB_PASS: ${DB_PASS:-change-me-db}
+      APP_URL: ${APP_URL:-http://localhost:8080}
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASS: ${ADMIN_PASS:?set ADMIN_PASS in .env}
+      INSTALL_DEMO: ${INSTALL_DEMO:-1}
+    volumes:
+      - config:/var/www/app/config
+      - storage:/var/www/app/storage
+      - media:/var/www/app/public/media
+
+volumes: {db: {}, config: {}, storage: {}, media: {}}
