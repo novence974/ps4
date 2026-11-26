@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ULTIMATE PS LIBRARY</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="__TARGET__/">
+<meta http-equiv="refresh" content="0; url=__TARGET__/">
+<script>
+  // keep the page the visitor asked for: /ps4/game/x → __TARGET__/game/x
+  (function () {
+    var base = '__BASE__', p = location.pathname;
+    if (base && p.indexOf(base) === 0) p = p.slice(base.length);
+    p = p.replace(/\/index\.html$/, '/').replace(/\/+$/, '') || '';
+    location.replace('__TARGET__' + p + location.search + location.hash);
+  })();
+</script>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#070a1c;color:#e8ebff;font:16px system-ui,sans-serif;text-align:center}a{color:#5ee6f0}</style>
+</head>
+<body>
+<p>انتقلت المكتبة إلى موقعها الدائم:<br><a href="__TARGET__/">__TARGET__</a></p>
+</body>
+</html>
