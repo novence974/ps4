@@ -9,6 +9,7 @@
 set -euo pipefail
 SRC="${1:?server url}"; OUT="${2:?output dir}"; BASE="${3:-}"
 SRC="${SRC%/}"; BASE="${BASE%/}"
+mkdir -p "$OUT"; OUT="$(cd "$OUT" && pwd)"
 PUBLIC_DIR="${PUBLIC_DIR:-$(cd "$(dirname "$0")/../server/public" && pwd)}"
 HOSTPORT="${SRC#*://}"
 TMP="$(mktemp -d)"
