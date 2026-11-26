@@ -10,7 +10,7 @@ $fileIcons = ['game' => 'disc', 'update' => 'refresh', 'dlc' => 'package', 'data
 $statusTag = ['available' => 'tag-ok', 'unavailable' => 'tag-bad', 'coming_soon' => 'tag-warn'][$g['files_status']] ?? '';
 $compatTag = ['perfect' => 'tag-ok', 'playable' => 'tag-ok', 'ingame' => 'tag-warn', 'menus' => 'tag-warn', 'boots' => 'tag-warn', 'nothing' => 'tag-bad', 'unknown' => ''];
 ?>
-<section class="page-hero">
+<section class="page-hero gen-hero" data-gen="<?= e($g['platform_slug']) ?>">
   <div class="hero-bg" aria-hidden="true"><img src="<?= e($bg) ?>" alt=""></div>
   <div class="wrap">
     <?php if ($preview): ?><div class="notice warn preview-note"><?= icon('eye-off') ?><span>هذه اللعبة مخفية عن الزوار. أنت تشاهد معاينة لأن لديك صلاحية التعديل.</span></div><?php endif; ?>
@@ -18,7 +18,7 @@ $compatTag = ['perfect' => 'tag-ok', 'playable' => 'tag-ok', 'ingame' => 'tag-wa
       <div class="game-cover"><img src="<?= e(cover_url($g, 'md')) ?>" alt="غلاف <?= e($g['title']) ?>" width="600" height="900"></div>
       <div>
         <div class="chips">
-          <a class="badge" href="<?= e(url('platform/' . $g['platform_slug'])) ?>" style="--pc: <?= e($pc) ?>"><?= e($g['platform_short']) ?></a>
+          <a class="badge" data-gen="<?= e($g['platform_slug']) ?>" href="<?= e(url('platform/' . $g['platform_slug'])) ?>" style="--pc: <?= e($pc) ?>"><?= e($g['platform_short']) ?></a>
           <?php if ($g['release_year']): ?><span class="chip"><?= icon('calendar') ?><?= (int) $g['release_year'] ?></span><?php endif; ?>
           <?php if ($g['age_rating']): ?><span class="chip"><?= icon('shield') ?><span class="ltr"><?= e($g['age_rating']) ?></span></span><?php endif; ?>
           <?php if ($g['region']): ?><span class="chip"><?= icon('globe') ?><?= e(region_name($g['region'])) ?></span><?php endif; ?>

@@ -1,13 +1,13 @@
 <?php /** @var array $platform @var array $result @var array $stats */ $p = $platform; ?>
-<section class="page-hero">
+<section class="page-hero gen-hero" data-gen="<?= e($p['slug']) ?>">
   <div class="hero-bg" aria-hidden="true"><?php if ($p['image_path']): ?><img src="<?= e(media_url($p['image_path'], 'lg')) ?>" alt=""><?php endif; ?></div>
   <div class="wrap">
     <div class="game-head" style="align-items:center">
-      <div class="slab logo-plate" style="--pc: <?= e($p['accent_color']) ?>; width:clamp(150px,16vw,210px); aspect-ratio:1; min-height:auto; justify-content:center; align-items:center">
+      <div class="slab logo-plate" data-gen="<?= e($p['slug']) ?>" style="--pc: <?= e($p['accent_color']) ?>; width:clamp(150px,16vw,210px); aspect-ratio:1; min-height:auto; justify-content:center; align-items:center">
         <?php if ($p['logo_path']): ?><img class="logo" src="<?= e(platform_logo($p)) ?>" alt="شعار <?= e($p['name']) ?>" style="width:70%;height:70%"><?php else: ?><span class="glyph"><?= e($p['short_name']) ?></span><?php endif; ?>
       </div>
       <div>
-        <div class="chips"><span class="badge" style="--pc: <?= e($p['accent_color']) ?>"><?= e($p['short_name']) ?></span><span class="chip"><?= icon('calendar') ?><?= (int) $p['release_year'] ?></span><span class="chip"><?= icon('layers') ?>الجيل <?= (int) $p['generation'] ?></span></div>
+        <div class="chips"><span class="badge" data-gen="<?= e($p['slug']) ?>" style="--pc: <?= e($p['accent_color']) ?>"><?= e($p['short_name']) ?></span><span class="chip"><?= icon('calendar') ?><?= (int) $p['release_year'] ?></span><span class="chip"><?= icon('layers') ?>الجيل <?= (int) $p['generation'] ?></span></div>
         <h1 class="game-title"><?= e($p['name']) ?></h1>
         <p class="muted" style="max-width:70ch"><?= e($p['description']) ?></p>
         <div class="stats-row" style="margin-inline-start:0">

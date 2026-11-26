@@ -3,8 +3,8 @@
   <p class="page-sub">خمسة أجيال في مكان واحد. لكل جهاز صفحة بمكتبته ومعلومات الصيغ المدعومة والتوافق وطرق التثبيت الرسمية.</p>
   <div class="grid">
     <?php foreach ($platforms as $p): ?>
-      <a class="glass panel sheen" href="<?= e(url('platform/' . $p['slug'])) ?>" style="--pc: <?= e($p['accent_color']) ?>; display:grid; grid-template-columns:auto 1fr auto; gap:22px; align-items:center">
-        <span class="slab logo-plate" style="--pc: <?= e($p['accent_color']) ?>; min-height:auto; width:130px; aspect-ratio:1; padding:16px; justify-content:center; align-items:center">
+      <a class="glass panel sheen plat-row" data-gen="<?= e($p['slug']) ?>" href="<?= e(url('platform/' . $p['slug'])) ?>" style="--pc: <?= e($p['accent_color']) ?>; display:grid; grid-template-columns:auto 1fr auto; gap:22px; align-items:center">
+        <span class="slab logo-plate" data-gen="<?= e($p['slug']) ?>" style="--pc: <?= e($p['accent_color']) ?>; min-height:auto; width:130px; aspect-ratio:1; padding:16px; justify-content:center; align-items:center">
           <?php if ($p['logo_path']): ?><img class="logo" src="<?= e(platform_logo($p)) ?>" alt="" style="width:84px;height:84px"><?php else: ?><span class="glyph"><?= e($p['short_name']) ?></span><?php endif; ?>
         </span>
         <span>

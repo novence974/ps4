@@ -24,6 +24,22 @@ $navItems = [['/', 'home', 'الرئيسية'], ['/platforms', 'gamepad', 'ال�
 <title><?= e($pageTitle) ?></title>
 <meta name="description" content="<?= e($metaDescription ?? setting('site.tagline')) ?>">
 <meta name="theme-color" content="#070a1c">
+<script nonce="<?= e(nonce()) ?>">
+/* tag the device so CSS can fine-tune (layout itself follows screen size & input type) */
+(function (d, n) {
+  var ua = n.userAgent || '', os = /iPad|iPhone|iPod/.test(ua) || (n.platform === 'MacIntel' && n.maxTouchPoints > 1) ? 'ios'
+    : /Android/.test(ua) ? 'android' : 'desktop';
+  d.dataset.os = os;
+  d.dataset.input = matchMedia('(pointer: coarse)').matches ? 'touch' : 'mouse';
+  if (matchMedia('(display-mode: standalone)').matches || n.standalone) d.dataset.standalone = '1';
+  /* browser bar colour follows the PlayStation era of the page */
+  addEventListener('DOMContentLoaded', function () {
+    var h = document.querySelector('.gen-hero[data-gen]'), m = document.querySelector('meta[name="theme-color"]');
+    var c = { ps1: '#1d1b19', ps2: '#050a26', ps3: '#0b0b0e', ps4: '#031131', ps5: '#070912' };
+    if (h && m && c[h.dataset.gen]) m.content = c[h.dataset.gen];
+  });
+})(document.documentElement, navigator);
+</script>
 <meta name="csrf-token" content="<?= e(csrf_token()) ?>">
 <meta property="og:title" content="<?= e($pageTitle) ?>">
 <link rel="icon" href="<?= e(asset('img/brand/favicon.svg')) ?>" type="image/svg+xml">

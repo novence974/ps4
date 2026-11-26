@@ -6,7 +6,7 @@ $pc = $g['platform_color'] ?? '#8b7cff';
 <article class="gcard<?= empty($g['is_published']) ? ' hidden-game' : '' ?>" style="--pc: <?= e($pc) ?>">
   <div class="cover">
     <img src="<?= e(cover_url($g, 'sm')) ?>" alt="" loading="lazy" decoding="async" width="300" height="450">
-    <span class="badge" style="--pc: <?= e($pc) ?>"><?= e($g['platform_short']) ?></span>
+    <span class="badge" data-gen="<?= e($g['platform_slug'] ?? '') ?>" style="--pc: <?= e($pc) ?>"><?= e($g['platform_short']) ?></span>
     <?php if ($g['rating'] !== null): ?><span class="score"><i></i><?= e(number_format((float) $g['rating'], 1)) ?></span><?php endif; ?>
     <span class="avail <?= e($g['files_status']) ?>" title="<?= e(files_status_names()[$g['files_status']] ?? '') ?>"></span>
   </div>

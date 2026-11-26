@@ -58,7 +58,7 @@ $first = $hero[0] ?? null;
     <div class="section-head"><h2 id="h-platforms">الأجهزة</h2><a class="more" href="<?= e(url('/platforms')) ?>">كل الأجهزة <?= icon('chev-left') ?></a></div>
     <div class="slabs">
       <?php foreach ($platforms as $p): ?>
-        <a class="slab" href="<?= e(url('platform/' . $p['slug'])) ?>" style="--pc: <?= e($p['accent_color']) ?>">
+        <a class="slab" data-gen="<?= e($p['slug']) ?>" href="<?= e(url('platform/' . $p['slug'])) ?>" style="--pc: <?= e($p['accent_color']) ?>">
           <span class="glyph"><?= e($p['short_name']) ?></span>
           <span><span class="name"><?= e($p['name']) ?></span><br><span class="count"><?= number_format((int) $p['games_count']) ?> <?= ar_noun((int) $p['games_count'], 'لعبة', 'ألعاب') ?></span></span>
         </a>

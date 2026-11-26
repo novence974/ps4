@@ -720,3 +720,112 @@ table.table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
 /* helpers added for shared partials */
 .chip.on, .chip[aria-current="true"] { border-color: rgba(139, 124, 255, 0.6); background: rgba(139, 124, 255, 0.16); }
 @media (max-width: 720px) { .hide-sm { display: none !important; } }
+
+/* =====================================================================
+   Generations: every PlayStation era gets its own palette and backdrop.
+   Hooked by data-gen="ps1".."ps5" on slabs, badges and page heroes.
+   Pure CSS shapes only, no console logos or trademarked symbols.
+   ===================================================================== */
+[data-gen="ps1"] { --g1: #c9c4bb; --g2: #8d877d; --g3: #e2231a; --gbg: #1d1b19;
+  --gpat: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 3px); }
+[data-gen="ps2"] { --g1: #3b5bff; --g2: #0b1a6e; --g3: #7fa3ff; --gbg: #050a26;
+  --gpat: repeating-linear-gradient(90deg, rgba(90,130,255,.16) 0 1px, transparent 1px 46px), radial-gradient(120% 70% at 50% 120%, rgba(59,91,255,.45), transparent 60%); }
+[data-gen="ps3"] { --g1: #d7dbe2; --g2: #6f7684; --g3: #e4002b; --gbg: #0b0b0e;
+  --gpat: radial-gradient(140% 40% at 20% 62%, rgba(215,219,226,.16), transparent 55%), radial-gradient(120% 30% at 80% 70%, rgba(170,180,200,.12), transparent 60%); }
+[data-gen="ps4"] { --g1: #2f8bff; --g2: #003791; --g3: #6fd0ff; --gbg: #031131;
+  --gpat: repeating-linear-gradient(115deg, rgba(111,208,255,.10) 0 2px, transparent 2px 64px), linear-gradient(160deg, rgba(0,55,145,.55), transparent 70%); }
+[data-gen="ps5"] { --g1: #ffffff; --g2: #3d7bff; --g3: #9ec1ff; --gbg: #070912;
+  --gpat: radial-gradient(rgba(255,255,255,.22) 1px, transparent 1.4px) 0 0 / 22px 22px, linear-gradient(115deg, rgba(255,255,255,.10) 0 38%, transparent 38%); }
+
+/* badges and logo plates take the era colour */
+.badge[data-gen^="ps"] { --pc: var(--g2); background: linear-gradient(120deg, var(--g2), color-mix(in srgb, var(--g1) 55%, var(--g2))); border-color: color-mix(in srgb, var(--g1) 55%, transparent); }
+.badge[data-gen="ps5"] { color: #0b1020; background: linear-gradient(120deg, #fff, #cfdcff); }
+.badge[data-gen="ps1"] { color: #1d1b19; background: linear-gradient(120deg, #e6e1d8, #b9b3a8); }
+
+/* platform tiles: era backdrop + motif */
+.slab[data-gen^="ps"] { --pc: var(--g1); background: var(--gpat), linear-gradient(150deg, color-mix(in srgb, var(--g2) 38%, var(--gbg)), var(--gbg) 75%); border-color: color-mix(in srgb, var(--g1) 22%, transparent); }
+.slab[data-gen^="ps"] .glyph { background: linear-gradient(160deg, #fff 10%, var(--g1) 55%, var(--g3) 120%); -webkit-background-clip: text; background-clip: text; }
+.slab[data-gen="ps1"]::after { content: ""; position: absolute; inset: auto 18px 14px auto; width: 64px; height: 6px; border-radius: 3px;
+  background: linear-gradient(90deg, #e2231a 0 25%, #f6c500 25% 50%, #00a95c 50% 75%, #0072ce 75%); opacity: .9; }
+.slab[data-gen="ps3"]::after { content: ""; position: absolute; inset: auto 0 0 0; height: 3px; background: linear-gradient(90deg, transparent, var(--g3), transparent); opacity: .8; }
+.slab[data-gen="ps5"]::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 34%; background: linear-gradient(90deg, rgba(255,255,255,.12), transparent); clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%); }
+[data-theme="light"] .slab[data-gen^="ps"] { color: #fff; }
+[data-theme="light"] .slab[data-gen^="ps"] .count { color: rgba(255,255,255,.75); }
+[data-theme="light"] .slab[data-gen^="ps"] .glyph { background: linear-gradient(160deg, #fff 10%, var(--g1) 55%, var(--g3) 120%); -webkit-background-clip: text; background-clip: text; }
+
+/* platform list rows */
+.plat-row[data-gen^="ps"] { background: var(--gpat), linear-gradient(110deg, color-mix(in srgb, var(--g2) 26%, transparent), transparent 70%), var(--glass); }
+
+/* page hero (platform & game pages): era motif over the blurred art, and the
+   whole page's accents shift to that era */
+.gen-hero[data-gen^="ps"]::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--gpat); opacity: .9; pointer-events: none; }
+body:has(.gen-hero[data-gen^="ps"]) .topbar { border-bottom-color: color-mix(in srgb, var(--hero-g1, #fff) 18%, transparent); }
+body:has(.gen-hero[data-gen="ps1"]) { --violet: #b9b3a8; --azure: #e2231a; --aqua: #f6c500; --grad: linear-gradient(120deg, #e2231a, #f6c500 50%, #0072ce); }
+body:has(.gen-hero[data-gen="ps2"]) { --violet: #3b5bff; --azure: #5b7dff; --aqua: #8fb0ff; --grad: linear-gradient(120deg, #1b2fb8, #3b5bff 55%, #8fb0ff); }
+body:has(.gen-hero[data-gen="ps3"]) { --violet: #9aa2b1; --azure: #d7dbe2; --aqua: #ffffff; --grad: linear-gradient(120deg, #5b616d, #d7dbe2 60%, #ffffff); }
+body:has(.gen-hero[data-gen="ps4"]) { --violet: #2f6bff; --azure: #2f8bff; --aqua: #6fd0ff; --grad: linear-gradient(120deg, #003791, #2f8bff 55%, #6fd0ff); }
+body:has(.gen-hero[data-gen="ps5"]) { --violet: #3d7bff; --azure: #9ec1ff; --aqua: #ffffff; --grad: linear-gradient(120deg, #3d7bff, #9ec1ff 55%, #ffffff); }
+body:has(.gen-hero[data-gen="ps3"]) .btn-primary, body:has(.gen-hero[data-gen="ps5"]) .btn-primary, body:has(.gen-hero[data-gen="ps1"]) .btn-primary { color: #0b0d14; }
+
+/* =====================================================================
+   Devices: layout follows the screen size, orientation, notch and input
+   type the browser reports, so every phone, tablet and desktop gets a fit.
+   ===================================================================== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+img, video { max-width: 100%; }
+
+/* notches, rounded corners and home indicators (iPhone, Android gesture bars) */
+.topbar { padding-top: env(safe-area-inset-top); height: calc(var(--topbar) + env(safe-area-inset-top)); }
+.wrap { width: min(var(--wrap), 100% - clamp(24px, 5vw, 64px) - env(safe-area-inset-left) - env(safe-area-inset-right)); }
+
+/* touch screens: larger targets, no hover lift, no 300ms zoom on inputs */
+@media (hover: none), (pointer: coarse) {
+  .btn, .chip, .tabbar a, .tools button, .tools a { min-height: 44px; }
+  input, select, textarea { font-size: 16px; }
+  .slab:hover, .gcard:hover { transform: none; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+}
+
+@media (max-width: 720px) {
+  .tabbar { inset: auto max(10px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
+  body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .dock { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .plat-row { grid-template-columns: 76px minmax(0, 1fr) !important; column-gap: 14px !important; row-gap: 6px !important; align-items: center !important; }
+  .plat-row > span:nth-child(2) { display: contents; }
+  .plat-row .logo-plate { grid-row: 1 / span 2; width: 76px !important; padding: 8px !important; border-radius: 18px; }
+  .plat-row .logo-plate .glyph { font-size: 1.5rem; }
+  .plat-row .logo-plate img { width: 52px !important; height: 52px !important; }
+  .plat-row h2 { font-size: 1.2rem; align-self: end; }
+  .plat-row .muted { font-size: var(--fs-xs); align-self: start; }
+  .plat-row p { grid-column: 1 / -1; margin-top: 6px !important; }
+  .plat-row > .stat { grid-column: 1 / -1; justify-self: start; }
+}
+
+/* small phones (iPhone SE / mini, compact Androids) */
+@media (max-width: 380px) {
+  html { font-size: 15px; }
+  .slab { min-height: 128px; padding: 16px 14px; }
+  .tabbar a { font-size: 10px; }
+}
+/* very narrow screens (Galaxy Fold cover, old phones) */
+@media (max-width: 320px) {
+  .slabs { grid-template-columns: 1fr; }
+  .tabbar a span, .tabbar a { font-size: 0; }
+  .tabbar a svg { width: 22px; height: 22px; }
+  .brand { display: none; }
+}
+/* phones held sideways: short screens get a slim bar */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root { --topbar: 52px; }
+  .tabbar { height: 48px; }
+  .tabbar a { flex-direction: row; gap: 6px; }
+  .page-hero { padding-top: calc(var(--topbar) + 12px); }
+  .game-cover { width: 120px; }
+}
+/* tablets and unfolded foldables in portrait */
+@media (min-width: 721px) and (max-width: 1024px) and (orientation: portrait) {
+  .slabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* iOS Safari: dynamic toolbar safe min-height */
+@supports (height: 100dvh) { .stage { max-height: 100dvh; } }
