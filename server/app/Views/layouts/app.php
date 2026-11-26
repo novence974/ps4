@@ -64,7 +64,7 @@ $navItems = [['/', 'home', 'الرئيسية'], ['/platforms', 'gamepad', 'ال�
     </a>
     <nav class="nav" aria-label="التنقل الرئيسي">
       <?php foreach ($navItems as [$href, $ic, $label]): ?>
-        <a href="<?= e(url($href)) ?>" class="<?= is_active_path($href) ? 'active' : '' ?>"><?= icon($ic) ?><span><?= e($label) ?></span></a>
+        <a href="<?= e(url($href)) ?>" class="<?= is_active_path(['/platforms' => '/platform', '/games' => '/game', '/categories' => '/categor'][$href] ?? $href) ? 'active' : '' ?>"<?= is_active_path(['/platforms' => '/platform', '/games' => '/game', '/categories' => '/categor'][$href] ?? $href) ? ' aria-current="page"' : '' ?>><?= icon($ic) ?><span><?= e($label) ?></span></a>
       <?php endforeach; ?>
     </nav>
     <form class="search" action="<?= e(url('/games')) ?>" method="get" role="search" data-suggest>
@@ -136,7 +136,7 @@ $navItems = [['/', 'home', 'الرئيسية'], ['/platforms', 'gamepad', 'ال�
 <nav class="tabbar" aria-label="تنقل الجوال">
   <a href="<?= e(url('/')) ?>" class="<?= is_active_path('/') ? 'active' : '' ?>"><?= icon('home') ?>الرئيسية</a>
   <a href="<?= e(url('/platforms')) ?>" class="<?= is_active_path('/platform') ? 'active' : '' ?>"><?= icon('gamepad') ?>الأجهزة</a>
-  <a href="<?= e(url('/games')) ?>" class="<?= is_active_path('/games') ? 'active' : '' ?>"><?= icon('search') ?>تصفح</a>
+  <a href="<?= e(url('/games')) ?>" class="<?= is_active_path('/game') ? 'active' : '' ?>"><?= icon('search') ?>تصفح</a>
   <a href="<?= e(url('/account/favorites')) ?>" class="<?= is_active_path('/account/favorites') ? 'active' : '' ?>"><?= icon('heart') ?>المفضلة</a>
   <a href="<?= e(url($u ? '/account' : '/login')) ?>" class="<?= is_active_path('/account') && !is_active_path('/account/favorites') ? 'active' : '' ?>"><?= icon('user') ?><?= $u ? 'حسابي' : 'دخول' ?></a>
 </nav>

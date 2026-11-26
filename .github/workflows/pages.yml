@@ -57,7 +57,7 @@ jobs:
       - name: Start a temporary server
         working-directory: server
         run: |
-          php -S 127.0.0.1:8099 -t public public/index.php > /tmp/php.log 2>&1 &
+          UPSL_STATIC_EXPORT=1 php -S 127.0.0.1:8099 -t public public/index.php > /tmp/php.log 2>&1 &
           for i in $(seq 1 30); do curl -fs http://127.0.0.1:8099/ >/dev/null && break; sleep 1; done
 
       - name: Export static pages

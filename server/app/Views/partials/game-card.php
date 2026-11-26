@@ -3,7 +3,9 @@
 $isFav = in_array((int) $g['id'], $favIds ?? [], true);
 $pc = $g['platform_color'] ?? '#8b7cff';
 ?>
-<article class="gcard<?= empty($g['is_published']) ? ' hidden-game' : '' ?>" style="--pc: <?= e($pc) ?>">
+<article class="gcard<?= empty($g['is_published']) ? ' hidden-game' : '' ?>" style="--pc: <?= e($pc) ?>"
+  data-title="<?= e(mb_strtolower($g['title'])) ?>" data-platform="<?= e($g['platform_slug'] ?? '') ?>" data-year="<?= (int) ($g['release_year'] ?? 0) ?>"
+  data-cats="<?= e(implode(' ', array_column($g['categories'] ?? [], 'slug'))) ?>" data-rating="<?= e((string) ($g['rating'] ?? 0)) ?>">
   <div class="cover">
     <img src="<?= e(cover_url($g, 'sm')) ?>" alt="" loading="lazy" decoding="async" width="300" height="450">
     <span class="badge" data-gen="<?= e($g['platform_slug'] ?? '') ?>" style="--pc: <?= e($pc) ?>"><?= e($g['platform_short']) ?></span>

@@ -55,7 +55,12 @@ class Response
             return;
         }
         header_remove('X-Powered-By');
-        http_response_code($this->status);
+        // Apache mod_php turns status codes it does not know (419) into 500; send a reason phrase it can pass through
+        if ($this->status === 419) {
+            header(($_SERVER['SERVER_PROTOCOL'] ?? 'HTTP/1.1') . ' 419 Page Expired', true, 419);
+        } else {
+            http_response_code($this->status);
+        }
         foreach ($this->headers as $name => $value) {
             foreach ((array) $value as $v) {
                 header($name . ': ' . str_replace(["\r", "\n"], '', (string) $v), false);

@@ -664,7 +664,9 @@ table.table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
   .slabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .game-layout { grid-template-columns: minmax(0, 1fr); }
   .sticky-side { position: static; }
-  .nav a span { display: none; }
+  .nav a { padding: 8px 10px; }
+  .nav a svg { display: none; }
+  .brand b { display: none; }
 }
 @media (max-width: 960px) {
   :root { --topbar: 60px; }
@@ -785,6 +787,8 @@ img, video { max-width: 100%; }
   input, select, textarea { font-size: 16px; }
   .slab:hover, .gcard:hover { transform: none; }
   a, button { -webkit-tap-highlight-color: transparent; }
+  .section-head .more { min-height: 44px; display: inline-flex; align-items: center; padding-inline: 6px; }
+  .facts dd a { display: inline-block; padding-block: 6px; }
 }
 
 @media (max-width: 720px) {
@@ -813,7 +817,6 @@ img, video { max-width: 100%; }
   .slabs { grid-template-columns: 1fr; }
   .tabbar a span, .tabbar a { font-size: 0; }
   .tabbar a svg { width: 22px; height: 22px; }
-  .brand { display: none; }
 }
 /* phones held sideways: short screens get a slim bar */
 @media (orientation: landscape) and (max-height: 500px) {

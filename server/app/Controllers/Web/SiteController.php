@@ -54,7 +54,9 @@ final class SiteController extends Controller
             throw new HttpException(404, 'الجهاز غير موجود');
         }
         $filters = ['platform' => $platform['slug']] + $this->request->query;
-        $result = GameService::search($filters, $this->page(), (int) setting('site.per_page', 24));
+        // static export (tools/export_static.sh) runs on the built-in server and needs the whole catalogue on one page
+        $perPage = PHP_SAPI === 'cli-server' && getenv('UPSL_STATIC_EXPORT') === '1' ? 1000 : (int) setting('site.per_page', 24);
+        $result = GameService::search($filters, $this->page(), $perPage);
         if ($this->request->query('partial')) {
             return $this->gridFragment($result);
         }
@@ -90,7 +92,9 @@ final class SiteController extends Controller
         if ($category) {
             $filters['category'] = $category['slug'];
         }
-        $result = GameService::search($filters, $this->page(), (int) setting('site.per_page', 24));
+        // static export (tools/export_static.sh) runs on the built-in server and needs the whole catalogue on one page
+        $perPage = PHP_SAPI === 'cli-server' && getenv('UPSL_STATIC_EXPORT') === '1' ? 1000 : (int) setting('site.per_page', 24);
+        $result = GameService::search($filters, $this->page(), $perPage);
         if ($this->request->query('partial')) {
             return $this->gridFragment($result);
         }
