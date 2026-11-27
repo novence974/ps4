@@ -844,3 +844,15 @@ img, video { max-width: 100%; }
 .tg-contact svg { color: #2aabee; }
 /* grid items may shrink below their content width (wide tables then scroll inside their own wrapper) */
 .dash > *, .grid > *, .grid-2 > *, .grid-3 > *, .form-grid > *, .media-grid > *, .game-layout > *, .browse > *, .slabs > *, .stats-row > * { min-width: 0; }
+
+/* tab bars on phones: an even grid in a rounded box (no oval clipping the active tab) */
+@media (max-width: 720px) {
+  .acc-tabs, .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; border-radius: var(--r-lg); overflow: visible; gap: 6px; }
+  .acc-tabs a, .tabs a { justify-content: center; padding: 9px 6px; border-radius: var(--r-md); white-space: normal; text-align: center; line-height: 1.25; min-height: 44px; }
+  .acc-tabs a .icon, .tabs a .icon { flex: none; }
+  .subnav { flex-wrap: nowrap; width: 100%; border-radius: var(--r-lg); scrollbar-width: none; }
+  .subnav::-webkit-scrollbar { display: none; }
+}
+@media (max-width: 380px) {
+  .acc-tabs, .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
